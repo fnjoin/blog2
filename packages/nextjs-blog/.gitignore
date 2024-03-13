@@ -44,4 +44,5 @@ junit.xml
 !/.eslintrc.json
 .vercel
 .next
+out
 !/project.json

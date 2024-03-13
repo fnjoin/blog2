@@ -129,12 +129,14 @@ const tests = new TypeScriptAppProject({
             // lib: ["esnext", "es2019", "es2020", "es2018"],
         },
     },
-    devDeps: ["@jest/globals"],
+    devDeps: ["@jest/globals", "@types/hast"],
     ...prettier,
     deps: [
         "mdast-util-directive",
         "mdast-util-to-markdown",
         "mdast-util-from-markdown",
+        "mdast-util-to-hast@^13",
+        "hast-util-to-html@^9",
         "micromark-extension-directive",
     ],
     jestOptions: {
@@ -153,7 +155,13 @@ const tests = new TypeScriptAppProject({
     },
 });
 
-tests.testTask.env("NODE_OPTIONS", "--experimental-vm-modules");
+tests.tsconfig?.file.addOverride("ts-node", {
+    transpileOnly: true,
+    files: true,
+    experimentalResolver: true,
+});
+
+tests.testTask.env("NODE_OPTIONS", "--inspect --experimental-vm-modules");
 tests.package.file.addOverride("type", "module");
 const [{ exec: projenrcCommand = "" }] = tests.defaultTask!.steps;
 tests.defaultTask!.reset(projenrcCommand.replace("ts-node", "ts-node-esm"));
