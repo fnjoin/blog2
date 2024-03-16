@@ -136,7 +136,7 @@
       },
       "steps": [
         {
-          "exec": "pnpm dlx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/jest,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,jest,prettier,ts-jest,typescript,http-server,next"
+          "exec": "pnpm dlx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/jest,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,jest,prettier,ts-jest,typescript,http-server"
         },
         {
           "exec": "pnpm i --no-frozen-lockfile"

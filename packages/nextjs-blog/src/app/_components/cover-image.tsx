@@ -8,7 +8,7 @@ type Props = {
     slug?: string;
 };
 
-const CoverImage = ({ title, src, slug }: Props) => {
+const CoverImage: React.FC<Props> = ({ title, src, slug }) => {
     const image = (
         <Image
             src={src}

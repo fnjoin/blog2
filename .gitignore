@@ -43,6 +43,7 @@ jspm_packages/
 .nx/cache
 !/nx.json
 !/.nxignore
+packages/gatsby-remark-tufte
 !/pnpm-workspace.yaml
 !/.syncpackrc.json
 !/.projenrc.ts

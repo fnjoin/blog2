@@ -2,7 +2,7 @@ type Props = {
     children?: React.ReactNode;
 };
 
-const Container = ({ children }: Props) => {
+const Container: React.FC<Props> = ({ children }) => {
     return <div className="container mx-auto px-5">{children}</div>;
 };
 

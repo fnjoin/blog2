@@ -24,6 +24,7 @@ const parent = new monorepo.MonorepoTsProject({
     defaultReleaseBranch,
     ...prettier,
 });
+parent.gitignore.addPatterns("packages/gatsby-remark-tufte");
 
 new TypeScriptAppProject({
     name: "@archieco/gatsby-remark-tufte",

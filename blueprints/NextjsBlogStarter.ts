@@ -14,7 +14,7 @@ export class NextJsBlogTypescriptAppProject extends TypeScriptAppProject {
             classnames: "^2.5.1",
             "date-fns": "^3.3.1",
             "gray-matter": "^4.0.3",
-            next: "14.1.0",
+            next: "^14.1.0",
             react: "^18",
             "react-dom": "^18",
             remark: "^15.0.1",

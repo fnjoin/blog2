@@ -1,3 +1,4 @@
+import React from "react";
 import { getAllPosts } from "../lib/api";
 import Container from "@/app/_components/container";
 import { HeroPost } from "@/app/_components/hero-post";
