@@ -36,11 +36,20 @@
   },
   "dependencies": {
     "hast-util-to-html": "^9",
+    "hastscript": "^8.0.0",
     "mdast-util-directive": "^3.0.0",
     "mdast-util-from-markdown": "^2.0.0",
     "mdast-util-to-hast": "^13",
     "mdast-util-to-markdown": "^2.1.0",
-    "micromark-extension-directive": "^3.0.0"
+    "micromark-extension-directive": "^3.0.0",
+    "rehype-document": "^7",
+    "rehype-format": "^5",
+    "rehype-stringify": "^10",
+    "remark-directive": "^3",
+    "remark-parse": "^11",
+    "remark-rehype": "^11",
+    "unified": "^11",
+    "unist-util-visit": "^5"
   },
   "license": "Apache-2.0",
   "version": "0.0.0",

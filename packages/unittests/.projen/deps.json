@@ -85,6 +85,10 @@
       "type": "runtime"
     },
     {
+      "name": "hastscript",
+      "type": "runtime"
+    },
+    {
       "name": "mdast-util-directive",
       "type": "runtime"
     },
@@ -103,6 +107,46 @@
     },
     {
       "name": "micromark-extension-directive",
+      "type": "runtime"
+    },
+    {
+      "name": "rehype-document",
+      "version": "^7",
+      "type": "runtime"
+    },
+    {
+      "name": "rehype-format",
+      "version": "^5",
+      "type": "runtime"
+    },
+    {
+      "name": "rehype-stringify",
+      "version": "^10",
+      "type": "runtime"
+    },
+    {
+      "name": "remark-directive",
+      "version": "^3",
+      "type": "runtime"
+    },
+    {
+      "name": "remark-parse",
+      "version": "^11",
+      "type": "runtime"
+    },
+    {
+      "name": "remark-rehype",
+      "version": "^11",
+      "type": "runtime"
+    },
+    {
+      "name": "unified",
+      "version": "^11",
+      "type": "runtime"
+    },
+    {
+      "name": "unist-util-visit",
+      "version": "^5",
       "type": "runtime"
     }
   ],

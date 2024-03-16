@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`remark is easier than mdast? 1`] = `
+VFile {
+  "cwd": "/Users/acowan/projects/writing/2024/02/trypandocandgatsby/packages/unittests",
+  "data": {},
+  "history": [],
+  "messages": [],
+  "value": "<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+  </head>
+  <body>
+    <h1>this is something</h1>
+    <p>following something</p>
+    <p>
+      :::identifier{key="value"} .foo
+      Inside of a container
+      :::
+    </p>
+  </body>
+</html>
+",
+}
+`;
+
+exports[`this is the example from remark-directive 1`] = `
+VFile {
+  "cwd": "/Users/acowan/projects/writing/2024/02/trypandocandgatsby/packages/unittests",
+  "data": {},
+  "history": [],
+  "messages": [],
+  "value": "<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+  </head>
+  <body>
+    <p>Lorem<br dtype="textDirective">ipsum.</p>
+    <hr class="red" dtype="leafDirective">
+    <section id="blah" dtype="containerDirective" sections="1">
+      <p>A <i dtype="textDirective">lovely</i> language know as <abbr title="HyperText Markup Language" dtype="textDirective">HTML</abbr>.</p>
+    </section>
+    <section id="blah2" dtype="containerDirective" sections="2">
+      <p>A little more</p>
+    </section>
+  </body>
+</html>
+",
+}
+`;

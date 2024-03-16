@@ -86,7 +86,7 @@
       },
       "steps": [
         {
-          "exec": "jest --passWithNoTests --updateSnapshot",
+          "exec": "jest --passWithNoTests",
           "receiveArgs": true
         },
         {
@@ -111,13 +111,13 @@
       },
       "steps": [
         {
-          "exec": "pnpm dlx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@jest/globals,@types/hast,@types/jest,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,jest,prettier,ts-jest,typescript,mdast-util-directive,mdast-util-from-markdown,mdast-util-to-markdown,micromark-extension-directive"
+          "exec": "pnpm dlx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@jest/globals,@types/hast,@types/jest,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,jest,prettier,ts-jest,typescript,hastscript,mdast-util-directive,mdast-util-from-markdown,mdast-util-to-markdown,micromark-extension-directive"
         },
         {
           "exec": "pnpm i --no-frozen-lockfile"
         },
         {
-          "exec": "pnpm update @jest/globals @types/hast @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser constructs eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint jest jest-junit prettier projen ts-jest typescript hast-util-to-html mdast-util-directive mdast-util-from-markdown mdast-util-to-hast mdast-util-to-markdown micromark-extension-directive"
+          "exec": "pnpm update @jest/globals @types/hast @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser constructs eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint jest jest-junit prettier projen ts-jest typescript hast-util-to-html hastscript mdast-util-directive mdast-util-from-markdown mdast-util-to-hast mdast-util-to-markdown micromark-extension-directive rehype-document rehype-format rehype-stringify remark-directive remark-parse remark-rehype unified unist-util-visit"
         },
         {
           "exec": "npx projen"

@@ -138,6 +138,15 @@ const tests = new TypeScriptAppProject({
         "mdast-util-to-hast@^13",
         "hast-util-to-html@^9",
         "micromark-extension-directive",
+        "rehype-document@^7",
+        "rehype-format@^5",
+        "rehype-stringify@^10",
+        "remark-parse@^11",
+        "remark-rehype@^11",
+        "unified@^11",
+        "remark-directive@^3",
+        "hastscript",
+        "unist-util-visit@^5",
     ],
     jestOptions: {
         jestConfig: {
@@ -161,6 +170,11 @@ tests.tsconfig?.file.addOverride("ts-node", {
     experimentalResolver: true,
 });
 
+//  --updateSnapshot removed from default settings
+tests.testTask.reset("jest --passWithNoTests", {
+    receiveArgs: true,
+});
+tests.testTask.spawn(tests.tasks.tryFind("eslint")!);
 tests.testTask.env("NODE_OPTIONS", "--inspect --experimental-vm-modules");
 tests.package.file.addOverride("type", "module");
 const [{ exec: projenrcCommand = "" }] = tests.defaultTask!.steps;
