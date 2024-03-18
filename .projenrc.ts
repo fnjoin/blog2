@@ -22,6 +22,7 @@ const parent = new monorepo.MonorepoTsProject({
     packageManager,
     projenrcTs: true,
     defaultReleaseBranch,
+    eslint: false,
     ...prettier,
 });
 parent.gitignore.addPatterns("packages/gatsby-remark-tufte");
@@ -56,6 +57,7 @@ new TypeScriptAppProject({
         "unist-util-select": "^1.5.0",
         "unist-util-visit": "^1.2.0",
     }).map(([name, version]) => `${name}@${version}`),
+    devDeps: ["@types/eslint@^8"],
 });
 
 const purple = new TypeScriptAppProject({
@@ -86,6 +88,7 @@ const purple = new TypeScriptAppProject({
         "unist-util-select": "^1.5.0",
         "unist-util-visit": "^1.2.0",
     }).map(([name, version]) => `${name}@${version}`),
+    devDeps: ["@types/eslint@^8"],
 });
 purple.package.addField("main", "lib/index.js");
 
@@ -101,16 +104,63 @@ new GatsbyTypescriptAppProject({
         "gatsby-transformer-remark",
         "gatsby-source-filesystem",
     ],
+    devDeps: ["@types/eslint@^8"],
 });
 
-new NextJsBlogTypescriptAppProject({
+const nextjsBlog = new NextJsBlogTypescriptAppProject({
     name: "nextjs-blog",
     outdir: "packages/nextjs-blog",
     packageManager,
     defaultReleaseBranch,
     parent,
+    deps: ["react-markdown@latest", "sharp@latest"],
+    devDeps: ["critters", "@types/eslint@^8"],
     sampleCode: true,
     ...prettier,
+});
+nextjsBlog.addGitIgnore("out");
+
+const imageServer = new TypeScriptAppProject({
+    name: "image-server",
+    outdir: "packages/image-server",
+    packageManager,
+    defaultReleaseBranch,
+    parent,
+    sampleCode: true,
+    ...prettier,
+    deps: ["sharp@latest", "express@latest", "yargs", "glob"],
+    devDeps: [
+        "@jest/globals",
+        "@types/express",
+        "@types/node",
+        "@types/yargs",
+        "@types/sharp",
+        "@types/eslint@^8",
+        "@types/glob",
+    ],
+    minNodeVersion: "v20.11.1",
+    eslintOptions: {
+        dirs: ["src"],
+        ignorePatterns: ["**/node_modules/**"],
+    },
+    tsconfig: {
+        compilerOptions: {
+            target: "esnext",
+            module: "nodenext",
+            moduleResolution: TypeScriptModuleResolution.NODE_NEXT,
+        },
+    },
+});
+imageServer.tasks.addTask("serve", {
+    steps: [
+        {
+            spawn: "build",
+        },
+        {
+            exec: "node lib/index.js",
+            receiveArgs: true,
+        },
+    ],
 });
 
 const tests = new TypeScriptAppProject({

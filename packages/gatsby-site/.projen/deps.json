@@ -1,6 +1,11 @@
 {
   "dependencies": [
     {
+      "name": "@types/eslint",
+      "version": "^8",
+      "type": "build"
+    },
+    {
       "name": "@types/jest",
       "type": "build"
     },

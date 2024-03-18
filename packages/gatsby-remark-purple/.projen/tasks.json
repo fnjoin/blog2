@@ -114,7 +114,7 @@
           "exec": "pnpm i --no-frozen-lockfile"
         },
         {
-          "exec": "pnpm update @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser constructs eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint jest jest-junit prettier projen ts-jest typescript hast-util-to-html html-parse-stringify mdast-util-to-hast remark-parse retext speakingurl unified unist-builder unist-util-select unist-util-visit"
+          "exec": "pnpm update @types/eslint @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser constructs eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint jest jest-junit prettier projen ts-jest typescript hast-util-to-html html-parse-stringify mdast-util-to-hast remark-parse retext speakingurl unified unist-builder unist-util-select unist-util-visit"
         },
         {
           "exec": "npx projen"

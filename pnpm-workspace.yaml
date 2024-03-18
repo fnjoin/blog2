@@ -4,5 +4,6 @@ packages:
   - packages/gatsby-remark-purple
   - packages/gatsby-remark-tufte
   - packages/gatsby-site
+  - packages/image-server
   - packages/nextjs-blog
   - packages/unittests

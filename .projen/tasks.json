@@ -73,16 +73,6 @@
         }
       ]
     },
-    "eslint": {
-      "name": "eslint",
-      "description": "Runs eslint against the codebase for all affected projects",
-      "steps": [
-        {
-          "exec": "pnpm exec nx run-many --target=eslint --output-style=stream --nx-bail",
-          "receiveArgs": true
-        }
-      ]
-    },
     "graph": {
       "name": "graph",
       "description": "Generate dependency graph for monorepo",
@@ -177,13 +167,13 @@
       },
       "steps": [
         {
-          "exec": "pnpm dlx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@aws/pdk,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,npm-check-updates,prettier,ts-node,typescript,@aws-cdk/aws-cognito-identitypool-alpha,aws-cdk-lib,cdk-nag"
+          "exec": "pnpm dlx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@aws/pdk,npm-check-updates,prettier,ts-node,typescript,@aws-cdk/aws-cognito-identitypool-alpha,aws-cdk-lib,cdk-nag"
         },
         {
           "exec": "pnpm i --no-frozen-lockfile"
         },
         {
-          "exec": "pnpm update @aws/pdk @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser constructs eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint npm-check-updates nx prettier projen syncpack ts-node typescript @aws-cdk/aws-cognito-identitypool-alpha aws-cdk-lib cdk-nag"
+          "exec": "pnpm update @aws/pdk @types/node constructs npm-check-updates nx prettier projen syncpack ts-node typescript @aws-cdk/aws-cognito-identitypool-alpha aws-cdk-lib cdk-nag"
         },
         {
           "exec": "pnpm exec projen"
