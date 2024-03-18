@@ -54,11 +54,14 @@ export class NextJsBlogTypescriptAppProject extends TypeScriptAppProject {
                     jsx: TypeScriptJsxMode.PRESERVE,
                     incremental: true,
                     rootDir: ".",
+                    baseUrl: ".",
                     paths: {
+                        "assets/*": ["./public/assets/*"],
                         "@/*": ["./src/*"],
                     },
                 },
                 include: [
+                    "**/*.jpg",
                     "next-env.d.ts",
                     "**/*.ts",
                     "**/*.tsx",
