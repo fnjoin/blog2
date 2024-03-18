@@ -6,6 +6,11 @@
       "type": "build"
     },
     {
+      "name": "@types/eslint",
+      "version": "^8",
+      "type": "build"
+    },
+    {
       "name": "@types/jest",
       "type": "build"
     },
@@ -42,6 +47,10 @@
     {
       "name": "constructs",
       "version": "^10.0.0",
+      "type": "build"
+    },
+    {
+      "name": "critters",
       "type": "build"
     },
     {
@@ -136,6 +145,11 @@
       "type": "runtime"
     },
     {
+      "name": "react-markdown",
+      "version": "latest",
+      "type": "runtime"
+    },
+    {
       "name": "react",
       "version": "^18",
       "type": "runtime"
@@ -148,6 +162,11 @@
     {
       "name": "remark",
       "version": "^15.0.1",
+      "type": "runtime"
+    },
+    {
+      "name": "sharp",
+      "version": "latest",
       "type": "runtime"
     }
   ],

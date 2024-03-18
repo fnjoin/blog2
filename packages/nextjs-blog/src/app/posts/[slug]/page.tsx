@@ -3,12 +3,11 @@ import { notFound } from "next/navigation";
 import React from "react";
 import { getAllPosts, getPostBySlug } from "../../../lib/api";
 import { CMS_NAME } from "../../../lib/constants";
-import markdownToHtml from "../../../lib/markdownToHtml";
 import Alert from "../../_components/alert";
 import Container from "../../_components/container";
 import Header from "../../_components/header";
-import { PostBody } from "../../_components/post-body";
 import { PostHeader } from "../../_components/post-header";
+import { PostBody } from "@/app/_components/post-body";
 
 export default async function Post({ params }: Params) {
     const post = getPostBySlug(params.slug);
@@ -16,8 +15,6 @@ export default async function Post({ params }: Params) {
     if (!post) {
         return notFound();
     }
-
-    const content = await markdownToHtml(post.content || "");
 
     return (
         <main>
@@ -31,7 +28,7 @@ export default async function Post({ params }: Params) {
                         date={post.date}
                         author={post.author}
                     />
-                    <PostBody content={content} />
+                    <PostBody content={post.content} />
                 </article>
             </Container>
         </main>

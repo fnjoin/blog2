@@ -136,13 +136,13 @@
       },
       "steps": [
         {
-          "exec": "pnpm dlx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/jest,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,jest,prettier,ts-jest,typescript,http-server"
+          "exec": "pnpm dlx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/jest,critters,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,jest,prettier,ts-jest,typescript,http-server,react-markdown,sharp"
         },
         {
           "exec": "pnpm i --no-frozen-lockfile"
         },
         {
-          "exec": "pnpm update @next/eslint-plugin-next @types/jest @types/node @types/react-dom @types/react @typescript-eslint/eslint-plugin @typescript-eslint/parser autoprefixer constructs eslint-config-next eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint jest jest-junit postcss prettier projen tailwindcss ts-jest typescript classnames date-fns gray-matter http-server next react-dom react remark-html remark"
+          "exec": "pnpm update @next/eslint-plugin-next @types/eslint @types/jest @types/node @types/react-dom @types/react @typescript-eslint/eslint-plugin @typescript-eslint/parser autoprefixer constructs critters eslint-config-next eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint jest jest-junit postcss prettier projen tailwindcss ts-jest typescript classnames date-fns gray-matter http-server next react-dom react-markdown react remark-html remark sharp"
         },
         {
           "exec": "npx projen"

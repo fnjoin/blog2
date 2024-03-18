@@ -34,7 +34,11 @@
     "jsx": "preserve",
     "incremental": true,
     "rootDir": ".",
+    "baseUrl": ".",
     "paths": {
+      "assets/*": [
+        "./public/assets/*"
+      ],
       "@/*": [
         "./src/*"
       ]
@@ -43,6 +47,7 @@
   "include": [
     "src/**/*.ts",
     "test/**/*.ts",
+    "**/*.jpg",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",

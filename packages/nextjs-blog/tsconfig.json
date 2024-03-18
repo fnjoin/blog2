@@ -35,7 +35,11 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": ".",
     "paths": {
+      "assets/*": [
+        "./public/assets/*"
+      ],
       "@/*": [
         "./src/*"
       ]
@@ -48,6 +52,7 @@
   },
   "include": [
     "src/**/*.ts",
+    "**/*.jpg",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
