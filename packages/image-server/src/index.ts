@@ -51,6 +51,9 @@ async function main() {
         );
 
         if (!files.length) {
+            console.log("File not found:", requestedPath);
+            console.log("Base name:", baseName);
+            console.log("Files:", files);
             return res.status(404).send("File not found");
         }
 

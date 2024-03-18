@@ -15,7 +15,7 @@ const nextConfig = {
     images: {
         formats: ["image/webp"],
         loader: "custom",
-        loaderFile: "./my-simple-loader.ts",
+        loaderFile: "./my-image-server-loader.ts",
     },
     webpack(config, constants) {
         // config.resolve.alias = {
