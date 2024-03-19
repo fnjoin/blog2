@@ -1,6 +1,11 @@
 {
   "dependencies": [
     {
+      "name": "@archieco/static-website-image-gen",
+      "version": "workspace:*",
+      "type": "build"
+    },
+    {
       "name": "@next/eslint-plugin-next",
       "version": "^14",
       "type": "build"

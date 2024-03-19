@@ -44,6 +44,18 @@
         }
       ]
     },
+    "image-gen": {
+      "name": "image-gen",
+      "steps": [
+        {
+          "spawn": "build"
+        },
+        {
+          "exec": "./lib/cli.js",
+          "receiveArgs": true
+        }
+      ]
+    },
     "install": {
       "name": "install",
       "description": "Install project dependencies and update lockfile (non-frozen)",
@@ -78,24 +90,12 @@
       "name": "pre-compile",
       "description": "Prepare the project for compilation"
     },
-    "serve": {
-      "name": "serve",
-      "steps": [
-        {
-          "spawn": "build"
-        },
-        {
-          "exec": "node lib/index.js",
-          "receiveArgs": true
-        }
-      ]
-    },
     "test": {
       "name": "test",
       "description": "Run tests",
       "steps": [
         {
-          "exec": "jest --passWithNoTests --coverageProvider=v8 --updateSnapshot",
+          "exec": "jest --passWithNoTests --updateSnapshot",
           "receiveArgs": true
         },
         {
@@ -120,13 +120,13 @@
       },
       "steps": [
         {
-          "exec": "pnpm dlx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@jest/globals,@types/express,@types/glob,@types/jest,@types/yargs,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,jest,prettier,ts-jest,typescript,express,glob,sharp,yargs"
+          "exec": "pnpm dlx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@jest/globals,@types/glob,@types/jest,@types/jsdom,@types/yargs,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,jest,prettier,ts-jest,typescript,glob,jsdom,sharp,yargs"
         },
         {
           "exec": "pnpm i --no-frozen-lockfile"
         },
         {
-          "exec": "pnpm update @jest/globals @types/eslint @types/express @types/glob @types/jest @types/node @types/yargs @typescript-eslint/eslint-plugin @typescript-eslint/parser constructs eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint jest jest-junit prettier projen ts-jest typescript express glob sharp yargs"
+          "exec": "pnpm update @jest/globals @types/glob @types/jest @types/jsdom @types/node @types/yargs @typescript-eslint/eslint-plugin @typescript-eslint/parser constructs eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint jest jest-junit prettier projen ts-jest typescript glob jsdom sharp yargs"
         },
         {
           "exec": "npx projen"

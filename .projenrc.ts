@@ -114,7 +114,12 @@ const nextjsBlog = new NextJsBlogTypescriptAppProject({
     defaultReleaseBranch,
     parent,
     deps: ["react-markdown@latest", "sharp@latest"],
-    devDeps: ["critters", "@types/eslint@^8"],
+    devDeps: [
+        "critters",
+        "@types/eslint@^8",
+        "@archieco/static-website-image-gen@workspace:*",
+    ],
+
     sampleCode: true,
     ...prettier,
 });
@@ -134,7 +139,6 @@ const imageServer = new TypeScriptAppProject({
         "@types/express",
         "@types/node",
         "@types/yargs",
-        "@types/sharp",
         "@types/eslint@^8",
         "@types/glob",
     ],
@@ -158,6 +162,46 @@ imageServer.tasks.addTask("serve", {
         },
         {
             exec: "node lib/index.js",
+            receiveArgs: true,
+        },
+    ],
+});
+
+const staticImageGen = new TypeScriptAppProject({
+    parent,
+    name: "@archieco/static-website-image-gen",
+    outdir: "packages/static-website-image-gen",
+    packageManager,
+    defaultReleaseBranch,
+    sampleCode: true,
+    ...prettier,
+    deps: ["sharp@latest", "glob@latest", "jsdom@latest", "yargs"],
+    bin: {
+        "static-website-image-gen": "./lib/cli.js",
+    },
+    tsconfig: {
+        compilerOptions: {
+            target: "esnext",
+            module: "nodenext",
+            esModuleInterop: true,
+            lib: ["esnext"],
+        },
+    },
+    devDeps: [
+        "@types/yargs",
+        "@types/node",
+        "@types/glob",
+        "@types/jsdom",
+        "@jest/globals",
+    ],
+});
+staticImageGen.addTask("image-gen", {
+    steps: [
+        {
+            spawn: "build",
+        },
+        {
+            exec: "./lib/cli.js",
             receiveArgs: true,
         },
     ],

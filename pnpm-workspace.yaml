@@ -3,6 +3,7 @@
 packages:
   - packages/gatsby-remark-purple
   - packages/gatsby-remark-tufte
+  - packages/static-website-image-gen
   - packages/gatsby-site
   - packages/image-server
   - packages/nextjs-blog

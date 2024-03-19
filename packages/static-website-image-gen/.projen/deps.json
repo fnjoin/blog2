@@ -5,15 +5,6 @@
       "type": "build"
     },
     {
-      "name": "@types/eslint",
-      "version": "^8",
-      "type": "build"
-    },
-    {
-      "name": "@types/express",
-      "type": "build"
-    },
-    {
       "name": "@types/glob",
       "type": "build"
     },
@@ -22,8 +13,12 @@
       "type": "build"
     },
     {
+      "name": "@types/jsdom",
+      "type": "build"
+    },
+    {
       "name": "@types/node",
-      "version": "^20",
+      "version": "^18",
       "type": "build"
     },
     {
@@ -93,12 +88,13 @@
       "type": "build"
     },
     {
-      "name": "express",
+      "name": "glob",
       "version": "latest",
       "type": "runtime"
     },
     {
-      "name": "glob",
+      "name": "jsdom",
+      "version": "latest",
       "type": "runtime"
     },
     {
