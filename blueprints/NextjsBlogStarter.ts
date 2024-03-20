@@ -95,7 +95,14 @@ export class NextJsBlogTypescriptAppProject extends TypeScriptAppProject {
         this.removeTask("build");
         this.removeTask("package");
         this.addTask("package", {
-            exec: "next build",
+            steps: [
+                {
+                    exec: "next build",
+                },
+                {
+                    exec: "static-website-image-gen --html-dir ./out --origin-dir ./public --target-dir ./out",
+                },
+            ],
         });
         this.addTask("build", {
             description: "Full release build",

@@ -6,5 +6,5 @@ export default function ImageLoader({ src, width, quality }: any) {
     const dirname = path.dirname(src);
     const outsrc = `${dirname}/${basename}webp?w=${width}&q=${quality}`;
 
-    return `http://localhost:8080${outsrc}`;
+    return `http://localhost:8081${outsrc}`;
 }

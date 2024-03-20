@@ -75,6 +75,9 @@
       "steps": [
         {
           "exec": "next build"
+        },
+        {
+          "exec": "static-website-image-gen --html-dir ./out --origin-dir ./public --target-dir ./out"
         }
       ]
     },

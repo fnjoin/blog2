@@ -15,7 +15,10 @@ const nextConfig = {
     images: {
         formats: ["image/webp"],
         loader: "custom",
-        loaderFile: "./my-image-server-loader.ts",
+        loaderFile:
+            process.env.NODE_ENV === "development"
+                ? "./my-image-server-loader.ts"
+                : "my-simple-loader.ts",
     },
     webpack(config, constants) {
         // config.resolve.alias = {
