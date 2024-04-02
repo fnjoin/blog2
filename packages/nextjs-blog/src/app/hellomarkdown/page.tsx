@@ -5,11 +5,11 @@ import * as fs from "fs";
 import * as path from "path";
 import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
-import { Literal } from "hast";
 import remarkDirective from "remark-directive";
 import remarkParse from "remark-parse";
 import { myRemarkPlugin } from "@/lib/mydirective";
 import imageSize from "image-size";
+import { extractToc } from "@/lib/myToc";
 
 const projectRoot = process.cwd();
 
@@ -51,7 +51,7 @@ export function Paragraph({ children }: any) {
 
 export function MarginNote({ children }: any) {
     return (
-        <div className="m-2 col-start-3 col-end-8 col-span-6 row-span-12 md:col-start-9 md:col-end-12 md:col-span-3 text-sm">
+        <div className="m-2 col-start-3 col-end-8 col-span-6 row-span-2 md:col-start-9 md:col-end-12 md:col-span-3 text-sm">
             {children}
         </div>
     );
@@ -122,8 +122,20 @@ export function Author(props: AuthorProps) {
     );
 }
 
-export function Heading1({ children }: PropsWithChildren) {
-    return <h1 className="m-2 col-start-3 col-end-8 col-span-6">{children}</h1>;
+export function Heading1({ children }: any) {
+    return (
+        <h1 id={children} className="col-start-3 col-end-8 col-span-6">
+            {children}
+        </h1>
+    );
+}
+
+export function Heading2({ children }: any) {
+    return (
+        <h2 id={children} className="col-start-3 col-end-8 col-span-6">
+            {children}
+        </h2>
+    );
 }
 
 export interface ImageWithinFigureProps {
@@ -259,6 +271,19 @@ export default function HelloMarkdownPage(): ReactNode {
             <Tags tags={art.tags} />
             <Heading1>{art.title}</Heading1>
             <Author {...art.author} />
+            <MarginNote>
+                Table of contents:
+                <ReactMarkdown
+                    remarkPlugins={[
+                        remarkParse,
+                        remarkDirective,
+                        myRemarkPlugin,
+                        extractToc,
+                    ]}
+                >
+                    {art.content}
+                </ReactMarkdown>
+            </MarginNote>
             <ReactMarkdown
                 remarkPlugins={[remarkParse, remarkDirective, myRemarkPlugin]}
                 // rehypePlugins={[]}
@@ -321,15 +346,8 @@ export default function HelloMarkdownPage(): ReactNode {
                         }
                         return <div {...rest} />;
                     },
-                    h1: ({ node }) => (
-                        <>
-                            {node?.children.map((x, idx) => (
-                                <Heading1 key={idx}>
-                                    {(x as Literal).value}
-                                </Heading1>
-                            ))}
-                        </>
-                    ),
+                    h2: ({ node, ...rest }) => <Heading2 {...rest} />,
+                    h1: ({ node, ...rest }) => <Heading1 {...rest} />,
                     blockquote: ({ node, ...rest }) => {
                         return (
                             <blockquote
@@ -341,7 +359,7 @@ export default function HelloMarkdownPage(): ReactNode {
                     p: ({ node, ...rest }) => {
                         return <Paragraph {...rest} />;
                     },
-                    img: ({ node, ...rest }) => {
+                    img: ({ node }) => {
                         return (
                             <ImageWithinFigure
                                 src={node?.properties.src as string}

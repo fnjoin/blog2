@@ -136,6 +136,7 @@ const nextjsBlog = new NextJsBlogTypescriptAppProject({
         "hastscript",
         "unist-util-visit@^5",
         "image-size",
+        "mdast-util-toc",
     ],
     devDeps: [
         "critters",
@@ -144,6 +145,7 @@ const nextjsBlog = new NextJsBlogTypescriptAppProject({
         "@archieco/image-server",
         "@jest/globals",
         "@types/hast",
+        "@types/unist",
         "@types/node",
     ],
 

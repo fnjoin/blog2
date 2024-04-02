@@ -1,6 +1,5 @@
 import { h } from "hastscript";
 import { Element } from "hastscript/lib/create-h";
-import { get } from "http";
 import { Root } from "remark-parse/lib";
 
 import { Node } from "unified/lib";
