@@ -29,7 +29,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "noEmit": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,

@@ -113,11 +113,38 @@ const nextjsBlog = new NextJsBlogTypescriptAppProject({
     packageManager,
     defaultReleaseBranch,
     parent,
-    deps: ["react-markdown@latest", "sharp@latest"],
+    deps: [
+        "react-markdown@latest",
+        "sharp@latest",
+        "mdast-util-directive",
+        "mdast-util-to-markdown",
+        "mdast-util-from-markdown",
+        "mdast-util-to-hast@^13",
+        "hast-util-to-html@^9",
+        "micromark-extension-directive",
+        "rehype-document@^7",
+        "rehype-format@^5",
+        "rehype-stringify@^10",
+        "remark-parse@^11",
+        "remark-rehype@^11",
+        "remark-frontmatter@latest",
+        "remark-stringify@latest",
+        "vfile-matter",
+        "to-vfile",
+        "unified@^11",
+        "remark-directive@^3",
+        "hastscript",
+        "unist-util-visit@^5",
+        "image-size",
+    ],
     devDeps: [
         "critters",
         "@types/eslint@^8",
         "@archieco/static-website-image-gen@workspace:*",
+        "@archieco/image-server",
+        "@jest/globals",
+        "@types/hast",
+        "@types/node",
     ],
 
     sampleCode: true,
@@ -126,7 +153,7 @@ const nextjsBlog = new NextJsBlogTypescriptAppProject({
 nextjsBlog.addGitIgnore("out");
 
 const imageServer = new TypeScriptAppProject({
-    name: "image-server",
+    name: "@archieco/image-server",
     outdir: "packages/image-server",
     packageManager,
     defaultReleaseBranch,
@@ -147,6 +174,9 @@ const imageServer = new TypeScriptAppProject({
         dirs: ["src"],
         ignorePatterns: ["**/node_modules/**"],
     },
+    bin: {
+        "image-server": "./lib/index.js",
+    },
     tsconfig: {
         compilerOptions: {
             target: "esnext",
@@ -163,6 +193,17 @@ imageServer.tasks.addTask("serve", {
         {
             exec: "node lib/index.js",
             receiveArgs: true,
+        },
+    ],
+});
+
+nextjsBlog.addTask("image-server", {
+    steps: [
+        {
+            spawn: "build",
+        },
+        {
+            exec: "image-server --port 8081 --root-dir ./public",
         },
     ],
 });
@@ -222,10 +263,13 @@ const tests = new TypeScriptAppProject({
             esModuleInterop: true,
             moduleResolution: TypeScriptModuleResolution.NODE,
             // lib: ["esnext", "es2019", "es2020", "es2018"],
+            paths: {
+                "@/*": ["./src/*"],
+            },
         },
     },
-    devDeps: ["@jest/globals", "@types/hast"],
     ...prettier,
+    devDeps: ["@jest/globals", "@types/hast", "@types/node"],
     deps: [
         "mdast-util-directive",
         "mdast-util-to-markdown",
@@ -238,6 +282,10 @@ const tests = new TypeScriptAppProject({
         "rehype-stringify@^10",
         "remark-parse@^11",
         "remark-rehype@^11",
+        "remark-frontmatter@latest",
+        "remark-stringify@latest",
+        "vfile-matter",
+        "to-vfile",
         "unified@^11",
         "remark-directive@^3",
         "hastscript",

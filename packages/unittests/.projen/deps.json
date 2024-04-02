@@ -130,6 +130,11 @@
       "type": "runtime"
     },
     {
+      "name": "remark-frontmatter",
+      "version": "latest",
+      "type": "runtime"
+    },
+    {
       "name": "remark-parse",
       "version": "^11",
       "type": "runtime"
@@ -140,6 +145,15 @@
       "type": "runtime"
     },
     {
+      "name": "remark-stringify",
+      "version": "latest",
+      "type": "runtime"
+    },
+    {
+      "name": "to-vfile",
+      "type": "runtime"
+    },
+    {
       "name": "unified",
       "version": "^11",
       "type": "runtime"
@@ -147,6 +161,10 @@
     {
       "name": "unist-util-visit",
       "version": "^5",
+      "type": "runtime"
+    },
+    {
+      "name": "vfile-matter",
       "type": "runtime"
     }
   ],

@@ -46,10 +46,14 @@
     "rehype-format": "^5",
     "rehype-stringify": "^10",
     "remark-directive": "^3",
+    "remark-frontmatter": "latest",
     "remark-parse": "^11",
     "remark-rehype": "^11",
+    "remark-stringify": "latest",
+    "to-vfile": "^8.0.0",
     "unified": "^11",
-    "unist-util-visit": "^5"
+    "unist-util-visit": "^5",
+    "vfile-matter": "^5.0.0"
   },
   "license": "Apache-2.0",
   "version": "0.0.0",

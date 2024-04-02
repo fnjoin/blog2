@@ -20,39 +20,6 @@ const nextConfig = {
                 ? "./my-image-server-loader.ts"
                 : "my-simple-loader.ts",
     },
-    webpack(config, constants) {
-        // config.resolve.alias = {
-        //     assets$: path.resolve(__dirname, "./public/assets/"),
-        //     ...config.resolve.alias,
-        // };
-        // config.module.rules.push({
-        //     test: /\.(png|jpe?g|gif|webp|jpg)$/i,
-        //     use: [{ loader: "file-loader" }],
-        // });
-        // config.externals = {
-        //     sharp: "commonjs sharp",
-        // };
-        // config.module.rules.push({
-        //     test: /\.(png|jpe?g|jpg|webp|tiff?)/i,
-        //     use: [
-        //         {
-        //             loader: "webpack-sharp-loader",
-        //             options: {
-        //                 toBuffer: true,
-        //                 processFunction: (sharp) => {
-        //                     return sharp.negate().webp();
-        //                 },
-        //                 // optional options passed to internal file-loader
-        //                 fileLoaderOptions: {
-        //                     name: "[name]-[contenthash].[ext]",
-        //                 },
-        //             },
-        //         },
-        //     ],
-        // });
-
-        return config; // return the modified config object
-    },
 };
 
 module.exports = nextConfig;

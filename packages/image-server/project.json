@@ -1,5 +1,5 @@
 {
-  "name": "image-server",
+  "name": "@archieco/image-server",
   "root": "packages/image-server",
   "targets": {
     "default": {

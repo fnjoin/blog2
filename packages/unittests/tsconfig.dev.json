@@ -28,7 +28,12 @@
       "node",
       "jest"
     ],
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
   },
   "include": [
     "src/**/*.ts",

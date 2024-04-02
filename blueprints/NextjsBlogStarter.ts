@@ -19,6 +19,7 @@ export class NextJsBlogTypescriptAppProject extends TypeScriptAppProject {
             "react-dom": "^18",
             remark: "^15.0.1",
             "remark-html": "^16.0.1",
+            "@tailwindcss/typography": "latest",
         }).map(([key, value]) => `${key}@${value}`);
 
         const defaultDevDeps = Object.entries({
@@ -48,7 +49,7 @@ export class NextJsBlogTypescriptAppProject extends TypeScriptAppProject {
                     noEmit: true,
                     esModuleInterop: true,
                     module: "esnext",
-                    moduleResolution: TypeScriptModuleResolution.BUNDLER,
+                    moduleResolution: TypeScriptModuleResolution.NODE,
                     resolveJsonModule: true,
                     isolatedModules: true,
                     jsx: TypeScriptJsxMode.PRESERVE,

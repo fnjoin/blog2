@@ -1,5 +1,8 @@
 {
-  "name": "image-server",
+  "name": "@archieco/image-server",
+  "bin": {
+    "image-server": "./lib/index.js"
+  },
   "scripts": {
     "build": "npx projen build",
     "compile": "npx projen compile",
