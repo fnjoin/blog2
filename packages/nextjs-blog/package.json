@@ -75,6 +75,7 @@
     "remark": "^15.0.1",
     "remark-directive": "^3",
     "remark-frontmatter": "latest",
+    "remark-gfm": "latest",
     "remark-html": "^16.0.1",
     "remark-parse": "^11",
     "remark-rehype": "^11",

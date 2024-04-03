@@ -244,6 +244,11 @@
       "type": "runtime"
     },
     {
+      "name": "remark-gfm",
+      "version": "latest",
+      "type": "runtime"
+    },
+    {
       "name": "remark-html",
       "version": "^16.0.1",
       "type": "runtime"

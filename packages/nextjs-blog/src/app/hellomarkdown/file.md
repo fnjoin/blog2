@@ -110,3 +110,29 @@ export function FullBleedImage({
 :::
 
 Morbi lacinia, lorem non malesuada faucibus, erat nisl eleifend dolor, sed lacinia ligula turpis vel erat. Nulla justo enim, consectetuer nec, ullamcorper ac, vestibulum in, tellus. Cras pellentesque augue sed tellus convallis ultrices. Nullam rhoncus aliquam metus. Phasellus fauctor sollicitudin justo. Sed etiam erat velit, pretiumid mimet, molestie eu, feugiat quis, erat. Nam blandit odio sed tellus tempor congue. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos.
+
+# GFM
+
+## Autolink literals
+
+www.example.com, https://example.com, and contact@example.com.
+
+## Footnote
+
+A note[^1]
+
+[^1]: Big note.
+
+## Strikethrough
+
+~one~ or ~~two~~ tildes.
+
+## Table
+
+| a   | b   |   c |  d  |
+| --- | :-- | --: | :-: |
+
+## Tasklist
+
+-   [ ] to do
+-   [x] done

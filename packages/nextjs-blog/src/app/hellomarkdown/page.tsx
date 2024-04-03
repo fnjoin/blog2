@@ -10,6 +10,7 @@ import remarkParse from "remark-parse";
 import { myRemarkPlugin } from "@/lib/mydirective";
 import imageSize from "image-size";
 import { extractToc } from "@/lib/myToc";
+import remarkGfm from "remark-gfm";
 
 const projectRoot = process.cwd();
 
@@ -51,7 +52,7 @@ export function Paragraph({ children }: any) {
 
 export function MarginNote({ children }: any) {
     return (
-        <div className="m-2 col-start-3 col-end-8 col-span-6 row-span-2 md:col-start-9 md:col-end-12 md:col-span-3 text-sm">
+        <div className="m-2 col-start-3 col-end-8 col-span-9 row-span-4 md:col-start-9 md:col-end-12 md:col-span-3 text-sm">
             {children}
         </div>
     );
@@ -99,15 +100,16 @@ export interface AuthorProps {
     bio: string;
 }
 export function Author(props: AuthorProps) {
+    const size = imageSize(path.join(projectRoot, "public", props.picture));
     return (
         <div className="col-start-3 col-end-8 col-span-6 grid grid-cols-8">
             <div className="col-span-1">
                 <Image
                     src={props.picture}
-                    width={1168 / 4}
-                    height={1063 / 4}
+                    width={size.width}
+                    height={size.height}
                     alt={props.name}
-                    className="rounded-xl m-1"
+                    className="rounded-xl p-1 w-full"
                 />
             </div>
             <div className="col-span-7 flex items-center">
@@ -123,16 +125,29 @@ export function Author(props: AuthorProps) {
 }
 
 export function Heading1({ children }: any) {
+    let id = children;
+    if (typeof children === "string") {
+        id = children.toLowerCase().replaceAll(" ", "-");
+    }
     return (
-        <h1 id={children} className="col-start-3 col-end-8 col-span-6">
+        <h1
+            id={children}
+            className="col-start-3 col-end-8 col-span-6 mt-3 mb-4"
+        >
             {children}
         </h1>
     );
 }
 
 export function Heading2({ children }: any) {
+    // lower case, - separated
+    let id = children;
+    if (typeof children === "string") {
+        id = children.toLowerCase().replaceAll(" ", "-");
+    }
+    // children.map((x: string) => x.toLowerCase().replaceAll(" ", "-"));
     return (
-        <h2 id={children} className="col-start-3 col-end-8 col-span-6">
+        <h2 id={id} className="col-start-3 col-end-8 col-span-6 mt-4 mb-1">
             {children}
         </h2>
     );
@@ -185,6 +200,8 @@ export function FigureFence(props: FigureFenceProps) {
     let refLabel = "Figure";
     if (props.refns && props.reflabels && props.reflabels[props.refns]) {
         refLabel = props.reflabels[props.refns];
+    } else {
+        logMissingFigureNS();
     }
 
     return (
@@ -221,12 +238,27 @@ export function RefLink(props: RefLinkProps) {
     let refns = props.refid?.split(":")[0];
     if (refns && props.reflabels && props.reflabels[refns]) {
         refLabel = props.reflabels[refns];
+    } else {
+        logMissingFigureNS();
     }
 
     return (
         <a href={`#${props.refid}`}>
             {refLabel} {props.refnum}
         </a>
+    );
+}
+
+function logMissingFigureNS() {
+    console.warn(
+        `
+Missing ref namespaces in the article frontmatter. Set figurens in your frontmatter
+e.g.:
+figurens:
+    img: Image
+    fig: Figure
+    code: Code Excerpt
+        `.trim(),
     );
 }
 
@@ -285,7 +317,12 @@ export default function HelloMarkdownPage(): ReactNode {
                 </ReactMarkdown>
             </MarginNote>
             <ReactMarkdown
-                remarkPlugins={[remarkParse, remarkDirective, myRemarkPlugin]}
+                remarkPlugins={[
+                    remarkParse,
+                    remarkGfm,
+                    remarkDirective,
+                    myRemarkPlugin,
+                ]}
                 // rehypePlugins={[]}
                 // urlTransform={(url, key, node) => {
                 //     console.log("urlTransform", url, key, node);
@@ -308,6 +345,38 @@ export default function HelloMarkdownPage(): ReactNode {
                             );
                         }
                         return <span {...rest} />;
+                    },
+                    ol: ({ node, className, ...rest }) => {
+                        return (
+                            <ol
+                                className={`${className} col-start-3 col-end-8 col-span-6`}
+                                {...rest}
+                            />
+                        );
+                    },
+                    ul: ({ node, className, ...rest }) => {
+                        return (
+                            <ul
+                                className={`${className} col-start-3 col-end-8 col-span-6`}
+                                {...rest}
+                            />
+                        );
+                    },
+                    table: ({ node, className, ...rest }) => {
+                        return (
+                            <table
+                                className={`${className} col-start-3 col-end-8 col-span-6`}
+                                {...rest}
+                            />
+                        );
+                    },
+                    section: ({ node, className, ...rest }) => {
+                        return (
+                            <section
+                                className={`${className} col-start-3 col-end-8 col-span-6`}
+                                {...rest}
+                            />
+                        );
                     },
                     div: ({ node, ...rest }) => {
                         if (

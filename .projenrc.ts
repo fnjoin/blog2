@@ -137,6 +137,7 @@ const nextjsBlog = new NextJsBlogTypescriptAppProject({
         "unist-util-visit@^5",
         "image-size",
         "mdast-util-toc",
+        "remark-gfm@latest",
     ],
     devDeps: [
         "critters",
