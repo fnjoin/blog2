@@ -89,6 +89,14 @@
   "license": "Apache-2.0",
   "version": "0.0.0",
   "jest": {
+    "verbose": true,
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ],
+    "moduleNameMapper": {
+      "^(\\.{1,2}/.*)\\.js$": "$1",
+      "@/(.*)": "<rootDir>/src/$1"
+    },
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.ts?(x)",
       "<rootDir>/(test|src)/**/*(*.)@(spec|test).ts?(x)"
@@ -122,10 +130,11 @@
       ]
     ],
     "transform": {
-      "^.+\\.[t]sx?$": [
+      "^.+\\.ts$": [
         "ts-jest",
         {
-          "tsconfig": "tsconfig.dev.json"
+          "tsconfig": "tsconfig.dev.json",
+          "useESM": true
         }
       ]
     }

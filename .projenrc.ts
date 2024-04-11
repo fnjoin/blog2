@@ -26,6 +26,7 @@ const parent = new monorepo.MonorepoTsProject({
     ...prettier,
 });
 parent.gitignore.addPatterns("packages/gatsby-remark-tufte");
+parent.gitignore.addPatterns(".DS_Store");
 
 new TypeScriptAppProject({
     name: "@archieco/gatsby-remark-tufte",
@@ -152,6 +153,22 @@ const nextjsBlog = new NextJsBlogTypescriptAppProject({
 
     sampleCode: true,
     ...prettier,
+    jestOptions: {
+        jestConfig: {
+            verbose: true,
+            extensionsToTreatAsEsm: [".ts"],
+            moduleNameMapper: {
+                "^(\\.{1,2}/.*)\\.js$": "$1",
+                "@/(.*)": "<rootDir>/src/$1",
+            },
+        },
+    },
+    tsJestOptions: {
+        transformPattern: "^.+\\.ts$",
+        transformOptions: {
+            useESM: true,
+        },
+    },
 });
 nextjsBlog.addGitIgnore("out");
 
@@ -206,7 +223,7 @@ nextjsBlog.addTask("image-server", {
             spawn: "build",
         },
         {
-            exec: "image-server --port 8081 --root-dir ./public",
+            exec: "image-server --port 8081 --root-dir ../../content",
         },
     ],
 });

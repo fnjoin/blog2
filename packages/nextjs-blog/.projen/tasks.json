@@ -59,7 +59,7 @@
           "spawn": "build"
         },
         {
-          "exec": "image-server --port 8081 --root-dir ./public"
+          "exec": "image-server --port 8081 --root-dir ../../content"
         }
       ]
     },

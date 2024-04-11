@@ -17,7 +17,7 @@ export default function HelloMarkdownPage(): ReactNode {
         <Article>
             <Tags tags={art.tags} />
             <Heading1>{art.title}</Heading1>
-            <Author {...art.author} />
+            <Author {...art.author_detail} />
             <MarginNote>
                 Table of contents:
                 <TocFromMarkdown markdown={art.content} />

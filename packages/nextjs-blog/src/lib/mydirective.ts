@@ -100,7 +100,7 @@ export function myRemarkPlugin() {
                 }
                 if (hast.tagName === "figure-fence") {
                     data.hProperties["data-element"] = "figure-fence";
-                    data.hProperties["refnum"] = refsByType.get(
+                    data.hProperties.refnum = refsByType.get(
                         ns,
                         hast.properties.id as string,
                     );

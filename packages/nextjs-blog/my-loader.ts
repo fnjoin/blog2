@@ -3,6 +3,7 @@ export default function ImageLoader({ src, width, quality }: any) {
         console.log("browser", src, width, quality);
         return `${src}`;
     } else {
+        console.log("yo", src);
         const sharp = require("sharp");
         const path = require("path");
         quality = quality ?? 85;

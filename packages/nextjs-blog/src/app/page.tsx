@@ -1,15 +1,14 @@
 import React from "react";
-import { getAllPosts } from "../lib/api";
 import Container from "@/app/_components/container";
 import { HeroPost } from "@/app/_components/hero-post";
 import { Intro } from "@/app/_components/intro";
 import { MoreStories } from "@/app/_components/more-stories";
+import { BlogRepository } from "@/lib/repository";
 
 export default function Index() {
-    const allPosts = getAllPosts();
-
+    const repository = BlogRepository.fromCwd();
+    const allPosts = repository.getAllPosts();
     const heroPost = allPosts[0];
-
     const morePosts = allPosts.slice(1);
 
     return (
@@ -20,7 +19,7 @@ export default function Index() {
                     title={heroPost.title}
                     coverImage={heroPost.coverImage}
                     date={heroPost.date}
-                    author={heroPost.author}
+                    author={heroPost.author_detail}
                     slug={heroPost.slug}
                     excerpt={heroPost.excerpt}
                 />

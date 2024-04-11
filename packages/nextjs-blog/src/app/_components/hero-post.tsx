@@ -10,7 +10,7 @@ type Props = {
     coverImage: string;
     date: string;
     excerpt: string;
-    author: Author;
+    author?: Author;
     slug: string;
 };
 
@@ -44,7 +44,9 @@ export function HeroPost({
                 </div>
                 <div>
                     <p className="text-lg leading-relaxed mb-4">{excerpt}</p>
-                    <Avatar name={author.name} picture={author.picture} />
+                    {author && (
+                        <Avatar name={author.name} picture={author.picture} />
+                    )}
                 </div>
             </div>
         </section>

@@ -1,29 +1,18 @@
-import React, { PropsWithChildren } from "react";
-import matter from "gray-matter";
-import ReactMarkdown from "react-markdown";
-import remarkDirective from "remark-directive";
-import remarkParse from "remark-parse";
-import { myRemarkPlugin } from "@/lib/mydirective";
-import imageSize from "image-size";
-import { extractToc } from "@/lib/myToc";
-import remarkGfm from "remark-gfm";
 import * as fs from "fs";
 import * as path from "path";
+import matter from "gray-matter";
+import imageSize from "image-size";
 import Image from "next/image";
+import React, { PropsWithChildren } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkDirective from "remark-directive";
+import remarkGfm from "remark-gfm";
+import remarkParse from "remark-parse";
+import { AuthorProps, MyPost } from "@/interfaces/mypost";
+import { myRemarkPlugin } from "@/lib/mydirective";
+import { extractToc } from "@/lib/myToc";
 
 const projectRoot = process.cwd();
-
-export interface MyPost {
-    author: AuthorProps;
-    slug: string;
-    title: string;
-    tags: string[];
-    excerpt: string;
-    content: string;
-    figurens?: {
-        [ns: string]: string;
-    };
-}
 
 export function getMarkdown(): MyPost {
     const fullPath = path.join(projectRoot, `src/app/hellomarkdown/file.md`);
@@ -93,13 +82,14 @@ export function Callout({ children }: any) {
     );
 }
 
-export interface AuthorProps {
-    picture: string;
-    name: string;
-    bio: string;
-}
 export function Author(props: AuthorProps) {
-    const size = imageSize(path.join(projectRoot, "public", props.picture));
+    if (!props.picture || !props.name) {
+        console.log("missing required props in Author");
+        return <></>;
+    }
+    const size = imageSize(
+        path.join(projectRoot, "../../content", props.picture),
+    );
     return (
         <div className="col-start-3 col-end-8 col-span-6 grid grid-cols-8">
             <div className="col-span-1">
@@ -129,10 +119,7 @@ export function Heading1({ children }: any) {
         id = children.toLowerCase().replaceAll(" ", "-");
     }
     return (
-        <h1
-            id={children}
-            className="col-start-3 col-end-8 col-span-6 mt-3 mb-4"
-        >
+        <h1 id={id} className="col-start-3 col-end-8 col-span-6 mt-3 mb-4">
             {children}
         </h1>
     );
@@ -168,7 +155,7 @@ export function ImageWithinFigure({
         return <span>Missing image properties</span>;
     }
     if (!width || !height) {
-        const size = imageSize(path.join(projectRoot, "public", src));
+        const size = imageSize(path.join(projectRoot, "../../content", src));
         // TODO these seem reversed
         width = size.height;
         height = size.width;
@@ -272,7 +259,7 @@ export function FullBleedImage({
     }
     if (!width || !height) {
         // TODO maybe it would be better to get this in the markdown plugin
-        const size = imageSize(path.join(projectRoot, "public", src));
+        const size = imageSize(path.join(projectRoot, "../../content", src));
         // TODO height width seem to be reversed in image-size???
         width = size.height;
         height = size.width;

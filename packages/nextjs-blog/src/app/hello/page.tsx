@@ -1,6 +1,5 @@
 import Image from "next/image";
-import React from "react";
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 export default function HelloPage(): ReactNode {
     const str = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor.
@@ -155,12 +154,13 @@ export default function HelloPage(): ReactNode {
                 </p>
             ))}
             <blockquote className="col-start-3 col-end-8 col-span-6 m-2">
-                {/* 
+                {/*
                 https://blog.hubspot.com/sales/famous-quotes
                 */}
-                Your time is limited, so don't waste it living someone else's
+                {`Your time is limited, so don't waste it living someone else's
                 life. Don't be trapped by dogma – which is living with the
                 results of other people's thinking. -Steve Jobs
+                `}
             </blockquote>
             <div className="col-start-1 col-end-13 col-span-12">
                 <div className="col-start-1 col-end-13 col-span-12 ">
@@ -193,18 +193,21 @@ export default function HelloPage(): ReactNode {
             </p>
             <ul className="m-2 col-start-3 col-end-8 col-span-6 text-sm">
                 <li>
-                    If you look at what you have in life, you'll always have
-                    more. If you look at what you don't have in life, you'll
-                    never have enough. -Oprah Winfrey
+                    If you look at what you have in life, you&rsquo;ll always
+                    have more. If you look at what you don&rsquo;t have in life,
+                    you&rsquo;ll never have enough. -Oprah Winfrey
                 </li>
                 <li>
-                    If you set your goals ridiculously high and it's a failure,
-                    you will fail above everyone else's success. -James Cameron
+                    If you set your goals ridiculously high and it&rsquo;s a
+                    failure, you will fail above everyone else&rsquo;s success.
+                    -James Cameron
                 </li>
                 <li>
+                    {`
                     You may say I'm a dreamer, but I'm not the only one. I hope
-                    someday you'll join us. And the world will live as one.
-                    -John Lennon
+                    someday you'll join us. And the world will live as
+                    one. -John Lennon
+                `}
                 </li>
             </ul>
         </div>

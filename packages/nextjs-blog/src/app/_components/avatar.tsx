@@ -2,11 +2,16 @@ import Image from "next/image";
 import { ReactNode } from "react";
 
 type Props = {
-    name: string;
-    picture: string;
+    name?: string;
+    picture?: string;
 };
 
 function Avatar({ name, picture }: Props): ReactNode {
+    console.log("picture", picture);
+    if (!name || !picture) {
+        console.log("missing required params in Avatar");
+        return <></>;
+    }
     return (
         <div className="flex items-center">
             <Image

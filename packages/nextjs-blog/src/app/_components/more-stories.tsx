@@ -1,8 +1,8 @@
 import React from "react";
 import { PostPreview } from "./post-preview";
-import { Post } from "@/interfaces/post";
+import { MyPost } from "@/interfaces/mypost";
 type Props = {
-    posts: Post[];
+    posts: MyPost[];
 };
 
 export function MoreStories({ posts }: Props) {
@@ -18,7 +18,7 @@ export function MoreStories({ posts }: Props) {
                         title={post.title}
                         coverImage={post.coverImage}
                         date={post.date}
-                        author={post.author}
+                        author={post.author_detail}
                         slug={post.slug}
                         excerpt={post.excerpt}
                     />
