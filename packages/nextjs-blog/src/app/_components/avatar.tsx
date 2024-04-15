@@ -4,11 +4,11 @@ import { ReactNode } from "react";
 type Props = {
     name?: string;
     picture?: string;
+    bio?: string;
 };
 
-function Avatar({ name, picture }: Props): ReactNode {
-    console.log("picture", picture);
-    if (!name || !picture) {
+function Avatar({ name, picture, bio }: Props): ReactNode {
+    if (!name || !picture || !bio) {
         console.log("missing required params in Avatar");
         return <></>;
     }
@@ -23,7 +23,10 @@ function Avatar({ name, picture }: Props): ReactNode {
                 className="w-12 h-12 rounded-full mr-4"
                 alt={name}
             />
-            <div className="text-xl font-bold">{name}</div>
+            <div className="m-2 text-sm">
+                <div className="prose-h4 font-semibold">By {name}</div>
+                <div>{bio}</div>
+            </div>
         </div>
     );
 }
