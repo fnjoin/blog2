@@ -35,7 +35,9 @@ export class BlogRepository {
         const files = crawlDirectories({
             dir: this.dir,
             filter: (file) =>
-                file.endsWith(".md") && file.indexOf("/authors/") < 0,
+                file.endsWith(".md") &&
+                file.indexOf("/authors/") < 0 &&
+                file.indexOf("post") > 0,
         });
         let x: IteratorResult<string> = files.next();
         while (!x.done) {
@@ -54,12 +56,21 @@ export class BlogRepository {
                 );
             }
 
-            post.slug = x.value.replace(this.dir, "").replace(".md", "");
-            console.log("post slug:", post.slug);
+            if (!post.coverImage) {
+                post.coverImage = "/assets/astronaut.jpg";
+            }
+
+            post.slug = x.value.replace(this.dir + "/", "").replace(".md", "");
+            // console.log("post slug:", post.slug);
             this.posts.push(post);
             this.postsByPath[post.slug] = post;
             x = files.next();
         }
+
+        // sort posts in reverse chronological order
+        this.posts.sort((a, b) => {
+            return new Date(b.date).getTime() - new Date(a.date).getTime();
+        });
     }
 
     getAllPosts(): MyPost[] {
