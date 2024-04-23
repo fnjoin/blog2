@@ -12,7 +12,14 @@ import { AuthorProps, MyPost } from "@/interfaces/mypost";
 import { myRemarkPlugin } from "@/lib/mydirective";
 import { extractToc } from "@/lib/myToc";
 
+import markdownStyles from "@/app/_components/markdown-styles.module.css";
+
 const projectRoot = process.cwd();
+
+// Note!! Headings are set in markdown-styles.module.css
+const gridStyle = "col-start-3 col-end-10 col-span-7";
+const marginStyle = "md:col-start-11 md:col-end-13 md:col-span-3";
+const extraWideStyle = "md:col-start-2 md:col-end-10 md:col-span-10";
 
 export function getMarkdown(): MyPost {
     const fullPath = path.join(projectRoot, `src/app/hellomarkdown/file.md`);
@@ -23,24 +30,20 @@ export function getMarkdown(): MyPost {
 }
 
 export function Article({ children }: PropsWithChildren) {
-    return (
-        <div className="prose max-w-none grid grid-cols-1 md:grid-cols-12 grid-flow-row gap-1">
-            {children}
-        </div>
-    );
+    return <div className={markdownStyles["article"]}>{children}</div>;
 }
 
 export function Paragraph({ children }: any) {
     return (
         // TODO if this a p tag, then we can't have nested divs under it, also figures aren't allowed
         // maybe we can check the children and conditionally render as a paragraph if the children are just text, does this matter?
-        <div className="m-2 col-start-3 col-end-8 col-span-6">{children}</div>
+        <div className={`m-2 ${gridStyle}`}>{children}</div>
     );
 }
 
 export function MarginNote({ children }: any) {
     return (
-        <div className="m-2 col-start-3 col-end-8 col-span-9 row-span-4 md:col-start-9 md:col-end-12 md:col-span-3 text-sm">
+        <div className={`m-2 ${gridStyle} row-span-4 ${marginStyle} text-sm`}>
             {children}
         </div>
     );
@@ -51,7 +54,7 @@ export interface TagProps {
 }
 export function Tags({ tags }: TagProps) {
     return (
-        <div className="m-2 col-start-3 col-end-8 col-span-6">
+        <div className={`m-2 ${gridStyle}`}>
             <div className="flex gap-1 flex-wrap text-sm justify-center">
                 <span>Tags:</span>
                 {tags.map((tag, idx) => (
@@ -69,14 +72,18 @@ export function Tags({ tags }: TagProps) {
 
 export function InlineCallout({ children }: any) {
     return (
-        <div className="grid grid-rows-subgrid col-span-12 col-start-1 col-end-13 md:col-span-8 md:col-start-2 md:col-end-9 place-content-center">
-            <div className=" m-5 text-lg">{children}</div>
+        <div
+            className={`col-span-12 col-start-1 col-end-13 ${extraWideStyle} place-content-center`}
+        >
+            <div className="m-5 text-lg">{children}</div>
         </div>
     );
 }
 export function Callout({ children }: any) {
     return (
-        <div className="m-2 col-start-1 col-end-13 col-span-12 md:col-start-9 md:col-end-12 md:col-span-3 md:row-span-12 text-2xl">
+        <div
+            className={`m-2 col-start-1 col-end-13 col-span-12 ${marginStyle} md:row-span-12 text-2xl`}
+        >
             {children}
         </div>
     );
@@ -91,7 +98,7 @@ export function Author(props: AuthorProps) {
         path.join(projectRoot, "../../content", props.picture),
     );
     return (
-        <div className="col-start-3 col-end-8 col-span-6 grid grid-cols-8">
+        <div className={`${gridStyle} grid grid-cols-8`}>
             <div className="col-span-1">
                 <Image
                     src={props.picture}
@@ -118,11 +125,7 @@ export function Heading1({ children }: any) {
     if (typeof children === "string") {
         id = children.toLowerCase().replaceAll(" ", "-");
     }
-    return (
-        <h1 id={id} className="col-start-3 col-end-8 col-span-6 mt-3 mb-4">
-            {children}
-        </h1>
-    );
+    return <h1 id={id}>{children}</h1>;
 }
 
 export function Heading2({ children }: any) {
@@ -132,11 +135,7 @@ export function Heading2({ children }: any) {
         id = children.toLowerCase().replaceAll(" ", "-");
     }
     // children.map((x: string) => x.toLowerCase().replaceAll(" ", "-"));
-    return (
-        <h2 id={id} className="col-start-3 col-end-8 col-span-6 mt-4 mb-1">
-            {children}
-        </h2>
-    );
+    return <h2 id={id}>{children}</h2>;
 }
 
 export interface ImageWithinFigureProps {
@@ -192,9 +191,9 @@ export function FigureFence(props: FigureFenceProps) {
 
     return (
         <>
-            <figure className="col-start-3 col-end-8 col-span-6" id={props.id}>
+            <figure className={gridStyle} id={props.id}>
                 {props.title && (
-                    <div className="col-start-3 col-end-8 col-span-6 text-center text-md">
+                    <div className={`${gridStyle} text-center text-md`}>
                         {props.refnum && `${props.refnum}: `}
                         {props.title}
                     </div>
@@ -307,10 +306,10 @@ export function ArticleBodyFromMarkdown({ art }: { art: MyPost }) {
                 myRemarkPlugin,
             ]}
             // rehypePlugins={[]}
-            // urlTransform={(url, key, node) => {
-            //     console.log("urlTransform", url, key, node);
-            //     return url; // or return a new url string.
-            // }}
+            urlTransform={(url) => {
+                console.log("urlTransform", url);
+                return url; // or return a new url string.
+            }}
             // default is all
             // allowedElements={["img", "div", "p"]}
             components={{
@@ -332,7 +331,7 @@ export function ArticleBodyFromMarkdown({ art }: { art: MyPost }) {
                 ol: ({ node, className, ...rest }) => {
                     return (
                         <ol
-                            className={`${className} col-start-3 col-end-8 col-span-6`}
+                            className={`${className ?? ""} ${gridStyle} list-decimal`}
                             {...rest}
                         />
                     );
@@ -340,7 +339,7 @@ export function ArticleBodyFromMarkdown({ art }: { art: MyPost }) {
                 ul: ({ node, className, ...rest }) => {
                     return (
                         <ul
-                            className={`${className} col-start-3 col-end-8 col-span-6`}
+                            className={`${className ?? ""} ${gridStyle} list-disc`}
                             {...rest}
                         />
                     );
@@ -348,7 +347,7 @@ export function ArticleBodyFromMarkdown({ art }: { art: MyPost }) {
                 table: ({ node, className, ...rest }) => {
                     return (
                         <table
-                            className={`${className} col-start-3 col-end-8 col-span-6`}
+                            className={`${className} ${gridStyle}`}
                             {...rest}
                         />
                     );
@@ -356,7 +355,7 @@ export function ArticleBodyFromMarkdown({ art }: { art: MyPost }) {
                 section: ({ node, className, ...rest }) => {
                     return (
                         <section
-                            className={`${className} col-start-3 col-end-8 col-span-6`}
+                            className={`${className} ${gridStyle}`}
                             {...rest}
                         />
                     );
@@ -394,12 +393,7 @@ export function ArticleBodyFromMarkdown({ art }: { art: MyPost }) {
                 h2: ({ node, ...rest }) => <Heading2 {...rest} />,
                 h1: ({ node, ...rest }) => <Heading1 {...rest} />,
                 blockquote: ({ node, ...rest }) => {
-                    return (
-                        <blockquote
-                            {...rest}
-                            className="col-start-3 col-end-8 col-span-6"
-                        />
-                    );
+                    return <blockquote {...rest} className={gridStyle} />;
                 },
                 p: ({ node, ...rest }) => {
                     return <Paragraph {...rest} />;
@@ -414,9 +408,9 @@ export function ArticleBodyFromMarkdown({ art }: { art: MyPost }) {
                 },
                 pre: ({ node, ...rest }) => {
                     return (
-                        <Paragraph>
-                            <pre>{rest.children}</pre>
-                        </Paragraph>
+                        <pre className={`m-2 ${gridStyle}`}>
+                            {rest.children}
+                        </pre>
                     );
                 },
             }}

@@ -2,12 +2,10 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import React from "react";
 import { CMS_NAME } from "../../../lib/constants";
-import Alert from "../../_components/alert";
-import Container from "../../_components/container";
 import Header from "../../_components/header";
-import { PostHeader } from "../../_components/post-header";
 import { PostBody } from "@/app/_components/post-body";
 import { BlogRepository } from "@/lib/repository";
+import { Article, Author, Heading1, Tags } from "@/lib/markdowncomponents";
 
 const repository = BlogRepository.fromCwd();
 
@@ -20,19 +18,13 @@ export default async function Post({ params }: Params) {
 
     return (
         <main>
-            <Alert preview={post.preview} />
-            <Container>
-                <Header />
-                <article className="mb-32">
-                    <PostHeader
-                        title={post.title}
-                        coverImage={post.coverImage}
-                        date={post.date}
-                        author={post.author_detail}
-                    />
-                    <PostBody content={post.content} />
-                </article>
-            </Container>
+            <Header />
+            <Article>
+                <Tags tags={post.tags} />
+                <Heading1>{post.title}</Heading1>
+                <Author {...post.author_detail} />
+                <PostBody content={post} />
+            </Article>
         </main>
     );
 }

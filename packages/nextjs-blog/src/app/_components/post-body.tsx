@@ -1,19 +1,10 @@
 import React from "react";
-import ReactMarkdown from "react-markdown";
-import markdownStyles from "./markdown-styles.module.css";
+import { ArticleBodyFromMarkdown } from "@/lib/markdowncomponents";
+import { MyPost } from "@/interfaces/mypost";
 export type Props = {
-    content: string;
+    content: MyPost;
 };
 
 export function PostBody({ content }: Props) {
-    return (
-        <div className="max-w-2xl mx-auto">
-            <ReactMarkdown
-                className={markdownStyles.markdown}
-                remarkPlugins={[]}
-            >
-                {content}
-            </ReactMarkdown>
-        </div>
-    );
+    return <ArticleBodyFromMarkdown art={content} />;
 }

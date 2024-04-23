@@ -1,18 +1,43 @@
+.article {
+    @apply prose max-w-none grid grid-cols-1 md:grid-cols-12 grid-flow-row gap-0;
+}
+
+.article .author {
+    @apply grid grid-cols-8;
+}
+
+.article .author,
+.article h1,
+.article h2,
+.article h3,
+.article h4,
+.article h5 {
+    @apply col-start-3 col-end-10 col-span-7;
+}
+
+.article h1,
+.article h2,
+.article h3,
+.article h4,
+.article h5 {
+    @apply mt-4 m-2;
+}
+
 .markdown {
-  @apply text-lg leading-relaxed;
+    @apply text-lg leading-relaxed;
 }
 
 .markdown p,
 .markdown ul,
 .markdown ol,
 .markdown blockquote {
-  @apply my-6;
+    @apply my-6;
 }
 
 .markdown h2 {
-  @apply text-3xl mt-12 mb-4 leading-snug;
+    @apply text-3xl mt-12 mb-4 leading-snug;
 }
 
 .markdown h3 {
-  @apply text-2xl mt-8 mb-4 leading-snug;
+    @apply text-2xl mt-8 mb-4 leading-snug;
 }

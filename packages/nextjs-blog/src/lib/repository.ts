@@ -13,7 +13,6 @@ function getAuthorMarkdown(fullPath: string): AuthorProps {
 function getMarkdown(fullPath: string): MyPost {
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const { data, content } = matter(fileContents);
-
     return { ...data, content } as MyPost;
 }
 
