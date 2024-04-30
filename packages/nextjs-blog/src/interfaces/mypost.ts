@@ -6,7 +6,10 @@ export interface PostWithAuthorHandles {
     excerpt: string;
     content: string;
     date: string;
-    coverImage: string;
+    coverImage: {
+        imageSrc: string;
+        caption: string;
+    };
     preview?: boolean;
     ogImage?: {
         url: string;

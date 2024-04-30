@@ -11,17 +11,23 @@ import {
     ImageWithinFigure,
     Tags,
 } from "@/lib/markdowncomponents";
-import { BlogRepository } from "@/lib/repository";
+import { PageRepository } from "@/lib/repository";
 
-const repository = BlogRepository.fromCwd();
+type Params = {
+    params: {
+        path: string[];
+    };
+};
+
+const repository = PageRepository.fromCwd();
 
 export default async function Post({ params }: Params) {
-    const post = repository.getPostByPath(params.slug.join("/"));
+    const post = repository.getPostByPath("page/" + params.path.join("/"));
 
     if (!post) {
+        console.log("post not found", params);
         return notFound();
     }
-
     return (
         <main>
             <Header />
@@ -43,14 +49,8 @@ export default async function Post({ params }: Params) {
     );
 }
 
-type Params = {
-    params: {
-        slug: string[];
-    };
-};
-
 export function generateMetadata({ params }: Params): Metadata {
-    const post = repository.getPostByPath(params.slug.join("/"));
+    const post = repository.getPostByPath("page/" + params.path.join("/"));
 
     if (!post) {
         return notFound();
@@ -60,6 +60,7 @@ export function generateMetadata({ params }: Params): Metadata {
 
     if (post.ogImage?.url) {
         return {
+            title,
             openGraph: {
                 title,
                 images: [post.ogImage?.url],
@@ -68,6 +69,7 @@ export function generateMetadata({ params }: Params): Metadata {
     }
 
     return {
+        title,
         openGraph: {
             title,
         },
@@ -76,7 +78,14 @@ export function generateMetadata({ params }: Params): Metadata {
 
 export async function generateStaticParams() {
     const posts = repository.getAllPosts();
+
+    console.log(
+        "generate static params",
+        posts.map((post) => ({
+            path: post.slug.split("/").slice(1),
+        })),
+    );
     return posts.map((post) => ({
-        slug: post.slug.split("/"),
+        path: post.slug.split("/").slice(1),
     }));
 }

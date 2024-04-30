@@ -56,7 +56,10 @@ export class BlogRepository {
             }
 
             if (!post.coverImage) {
-                post.coverImage = "/assets/astronaut.jpg";
+                post.coverImage = {
+                    imageSrc: "/assets/astronaut.jpg",
+                    caption: "Placeholder image of an astronaut.",
+                };
             }
 
             post.slug = x.value.replace(this.dir + "/", "").replace(".md", "");
@@ -72,6 +75,45 @@ export class BlogRepository {
         });
     }
 
+    getAllPosts(): MyPost[] {
+        return this.posts;
+    }
+
+    getPostByPath(slug: string): MyPost {
+        return this.postsByPath[slug];
+    }
+}
+
+export class PageRepository {
+    static fromCwd() {
+        return new PageRepository({
+            dir: path.join(process.cwd(), "../../content"),
+        });
+    }
+    private dir: string;
+    private posts: MyPost[] = [];
+    private postsByPath: Record<string, MyPost> = {};
+
+    constructor({ dir }: BlogRepositoryProps) {
+        this.dir = dir;
+        const files = crawlDirectories({
+            dir: this.dir,
+            filter: (file) =>
+                file.endsWith(".md") &&
+                file.indexOf("/authors/") < 0 &&
+                file.indexOf("/page/") > 0,
+        });
+        let x: IteratorResult<string> = files.next();
+        while (!x.done) {
+            const post = getMarkdown(x.value);
+
+            post.slug = x.value.replace(this.dir + "/", "").replace(".md", "");
+            // console.log("post slug:", post.slug);
+            this.posts.push(post);
+            this.postsByPath[post.slug] = post;
+            x = files.next();
+        }
+    }
     getAllPosts(): MyPost[] {
         return this.posts;
     }

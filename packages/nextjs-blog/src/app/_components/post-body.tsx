@@ -1,6 +1,6 @@
 import React from "react";
-import { ArticleBodyFromMarkdown } from "@/lib/markdowncomponents";
 import { MyPost } from "@/interfaces/mypost";
+import { ArticleBodyFromMarkdown } from "@/lib/markdowncomponents";
 export type Props = {
     content: MyPost;
 };

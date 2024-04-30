@@ -8,18 +8,17 @@ import ReactMarkdown from "react-markdown";
 import remarkDirective from "remark-directive";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
+import markdownStyles from "@/app/_components/markdown-styles.module.css";
 import { AuthorProps, MyPost } from "@/interfaces/mypost";
 import { myRemarkPlugin } from "@/lib/mydirective";
 import { extractToc } from "@/lib/myToc";
 
-import markdownStyles from "@/app/_components/markdown-styles.module.css";
-
 const projectRoot = process.cwd();
 
 // Note!! Headings are set in markdown-styles.module.css
-const gridStyle = "col-start-3 col-end-10 col-span-7";
-const marginStyle = "md:col-start-11 md:col-end-13 md:col-span-3";
-const extraWideStyle = "md:col-start-2 md:col-end-10 md:col-span-10";
+const gridStyle = ""; // "col-start-4 col-end-10 col-span-7";
+const marginStyle = ""; // "md:col-start-11 md:col-end-13 md:col-span-3";
+const extraWideStyle = ""; // "md:col-start-2 md:col-end-10 md:col-span-10";
 
 export function getMarkdown(): MyPost {
     const fullPath = path.join(projectRoot, `src/app/hellomarkdown/file.md`);
@@ -30,7 +29,7 @@ export function getMarkdown(): MyPost {
 }
 
 export function Article({ children }: PropsWithChildren) {
-    return <div className={markdownStyles["article"]}>{children}</div>;
+    return <div className={markdownStyles.article}>{children}</div>;
 }
 
 export function Paragraph({ children }: any) {
@@ -50,14 +49,17 @@ export function MarginNote({ children }: any) {
 }
 
 export interface TagProps {
-    tags: string[];
+    tags?: string[];
 }
 export function Tags({ tags }: TagProps) {
+    if (!tags) {
+        return <></>;
+    }
     return (
         <div className={`m-2 ${gridStyle}`}>
             <div className="flex gap-1 flex-wrap text-sm justify-center">
                 <span>Tags:</span>
-                {tags.map((tag, idx) => (
+                {tags?.map((tag, idx) => (
                     <span
                         key={idx}
                         className="bg-gray-100 rounded-full px-3 font-semibold text-gray-600"
@@ -97,18 +99,17 @@ export function Author(props: AuthorProps) {
     const size = imageSize(
         path.join(projectRoot, "../../content", props.picture),
     );
+    console.log("markdown styles", markdownStyles);
     return (
-        <div className={`${gridStyle} grid grid-cols-8`}>
-            <div className="col-span-1">
-                <Image
-                    src={props.picture}
-                    width={size.width}
-                    height={size.height}
-                    alt={props.name}
-                    className="rounded-xl p-1 w-full"
-                />
-            </div>
-            <div className="col-span-7 flex items-center">
+        <div className={markdownStyles.author}>
+            <Image
+                src={props.picture}
+                width={size.width}
+                height={size.height}
+                alt={props.name}
+                className="rounded-xl p-1 w-full"
+            />
+            <div className="flex items-center">
                 <div className="m-2 text-sm">
                     <div className="prose-h4 font-semibold">
                         By {props.name}
@@ -155,9 +156,8 @@ export function ImageWithinFigure({
     }
     if (!width || !height) {
         const size = imageSize(path.join(projectRoot, "../../content", src));
-        // TODO these seem reversed
-        width = size.height;
-        height = size.width;
+        width = size.width;
+        height = size.height;
     }
     return (
         <Image
@@ -307,7 +307,6 @@ export function ArticleBodyFromMarkdown({ art }: { art: MyPost }) {
             ]}
             // rehypePlugins={[]}
             urlTransform={(url) => {
-                console.log("urlTransform", url);
                 return url; // or return a new url string.
             }}
             // default is all
