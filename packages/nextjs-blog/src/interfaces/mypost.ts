@@ -17,6 +17,7 @@ export interface PostWithAuthorHandles {
     figurens?: {
         [ns: string]: string;
     };
+    content_flags?: string[];
 }
 
 export interface MyPost extends PostWithAuthorHandles {
