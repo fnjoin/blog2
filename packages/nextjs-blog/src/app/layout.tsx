@@ -7,19 +7,23 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const title = "Join Function";
+const description =
+    "We are responsible for hundreds of thousands of deployments to the cloud through automation. Learn some of these best practices.";
+
 export const metadata: Metadata = {
-    metadataBase: new URL("http://localhost:3000"),
-    title: "Title webtsite",
-    description: "this is the desciption",
+    metadataBase: new URL("https://www.fnjoin.com"),
+    title,
+    description,
     openGraph: {
-        title: "Title webtsite",
-        description: "this is the desciption",
+        title,
+        description,
     },
     twitter: {
         card: "summary_large_image",
-        site: "@archiecowan",
-        title: "Title webtsite",
-        description: "this is the desciption",
+        creator: "@archiecowan",
+        title,
+        description,
     },
 };
 

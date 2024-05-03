@@ -57,19 +57,22 @@ export function generateMetadata({ params }: Params): Metadata {
     }
 
     const title = `${post.title} | Join Function`;
-
-    if (post.ogImage?.url) {
-        return {
-            openGraph: {
-                title,
-                images: [post.ogImage?.url],
-            },
-        };
-    }
+    const description = post.excerpt;
 
     return {
+        metadataBase: new URL("https://www.fnjoin.com"),
+        title,
+        description,
         openGraph: {
             title,
+            description,
+            images: post.ogImage ? [post.ogImage?.url] : [],
+        },
+        twitter: {
+            card: "summary_large_image",
+            creator: post.author_detail.twitter,
+            title,
+            description,
         },
     };
 }

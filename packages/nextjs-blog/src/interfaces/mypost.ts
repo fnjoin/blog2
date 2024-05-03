@@ -3,7 +3,7 @@ export interface PostWithAuthorHandles {
     slug: string;
     title: string;
     tags: string[];
-    excerpt: string;
+    excerpt?: string;
     content: string;
     date: string;
     coverImage: {
@@ -28,4 +28,5 @@ export interface AuthorProps {
     picture?: string;
     name?: string;
     bio?: string;
+    twitter?: string;
 }
