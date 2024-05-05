@@ -12,6 +12,8 @@
 .article h4,
 .article h5,
 .article blockquote,
+.article table,
+.article section,
 .article figure {
     @apply col-start-4 col-end-10 col-span-6;
 }
