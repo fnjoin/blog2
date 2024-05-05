@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
-import { PageRepository } from "@/lib/repository";
 import HeaderButton from "./conditiononpathnamebutton";
+import { PageRepository } from "@/lib/repository";
 
 // more nav options https://flowbite.com/docs/components/navbar/
 const Header = () => {
@@ -20,8 +20,8 @@ const Header = () => {
                         .filter((p) =>
                             p.content_flags?.includes("top-nav-call-to-action"),
                         )
-                        .map((p) => (
-                            <HeaderButton post={p} />
+                        .map((p, idx) => (
+                            <HeaderButton key={idx} post={p} />
                         ))}
                 </div>
                 <div

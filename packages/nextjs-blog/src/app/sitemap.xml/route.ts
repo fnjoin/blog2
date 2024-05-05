@@ -1,7 +1,7 @@
 /** app/sitemap.xml/route.ts **/
 
-import { BlogRepository, PageRepository } from "@/lib/repository";
 import { MetadataRoute } from "next";
+import { BlogRepository, PageRepository } from "@/lib/repository";
 
 function getPostsForSitemap(): MetadataRoute.Sitemap {
     const posts = BlogRepository.fromCwd().getAllPosts();

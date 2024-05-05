@@ -1,9 +1,9 @@
 "use client";
 
-import { MyPost } from "@/interfaces/mypost";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import { MyPost } from "@/interfaces/mypost";
 
 export interface HeaderButtonProps {
     post: MyPost;
