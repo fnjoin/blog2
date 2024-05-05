@@ -28,6 +28,21 @@ const parent = new monorepo.MonorepoTsProject({
 parent.gitignore.addPatterns("packages/gatsby-remark-tufte");
 parent.gitignore.addPatterns(".DS_Store");
 
+parent.package.file.addOverride("pnpm.overrides", {
+    "@types/babel__traverse": "7.18.2",
+    "@zkochan/js-yaml": "npm:js-yaml@4.1.0",
+    "wrap-ansi": "^7.0.0",
+    "trim@<0.0.3": ">=0.0.3",
+    "html-parse-stringify@<2.0.1": ">=2.0.1",
+    "nth-check@<2.0.1": ">=2.0.1",
+    "semver@>=7.0.0 <7.5.2": ">=7.5.2",
+    "axios@>=0.8.1 <0.28.0": ">=0.28.0",
+    "tough-cookie@<4.1.3": ">=4.1.3",
+    "webpack-dev-middleware@<=5.3.3": ">=5.3.4",
+    "express@<4.19.2": ">=4.19.2",
+    "tar@<6.2.1": ">=6.2.1",
+});
+
 new TypeScriptAppProject({
     name: "@archieco/gatsby-remark-tufte",
     outdir: "packages/gatsby-remark-tufte",
