@@ -13,9 +13,8 @@ import {
 } from "@/lib/markdowncomponents";
 import { BlogRepository } from "@/lib/repository";
 
-const repository = BlogRepository.fromCwd();
-
 export default async function Post({ params }: Params) {
+    const repository = BlogRepository.fromCwd();
     const post = repository.getPostByPath(params.slug.join("/"));
 
     if (!post) {
@@ -50,6 +49,7 @@ type Params = {
 };
 
 export function generateMetadata({ params }: Params): Metadata {
+    const repository = BlogRepository.fromCwd();
     const post = repository.getPostByPath(params.slug.join("/"));
 
     if (!post) {
@@ -78,6 +78,7 @@ export function generateMetadata({ params }: Params): Metadata {
 }
 
 export async function generateStaticParams() {
+    const repository = BlogRepository.fromCwd();
     const posts = repository.getAllPosts();
     return posts.map((post) => ({
         slug: post.slug.split("/"),

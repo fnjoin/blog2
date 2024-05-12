@@ -18,6 +18,14 @@
     @apply col-start-4 col-end-10 col-span-6;
 }
 
+.article .margin-note {
+    @apply md:col-start-10 md:col-end-13 md:col-span-3 md:p-3 md:row-span-3;
+}
+
+.article {
+    @apply mb-10;
+}
+
 .article pre {
     @apply text-xs;
 }

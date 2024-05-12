@@ -42,7 +42,9 @@ export function Paragraph({ children }: any) {
 
 export function MarginNote({ children }: any) {
     return (
-        <div className={`m-2 ${gridStyle} row-span-4 ${marginStyle} text-sm`}>
+        <div
+            className={`m-2 ${gridStyle} row-span-4 ${marginStyle} text-sm ${markdownStyles["margin-note"]}`}
+        >
             {children}
         </div>
     );
