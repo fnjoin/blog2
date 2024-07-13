@@ -29,7 +29,7 @@ Use the skills you are good at to help you improve your weaker skills.
 :::
 
 :::margin-note
-For over 10 years I worked with someone I admired (and continue to) for a long time. Dale Myers was first known to me as my CTO at Careersite, the former Borders Books CTO. The guy who left on principle when borders decided to outsource its technology instead of innovating with its own engineers. Never thought of this until now. If Borders hadn’t lost the game, I probably wouldn’t have ever met Dale. That's nice icing on the cake for having lost my favorite book store.
+For over 10 years I worked with someone I admired (and continue to) for a long time. Dale Myers was first known to me as my CTO at Careersite, a former Borders Books VP of Tech. The guy who left on principle when borders decided to outsource its technology instead of innovating with its own engineers. Never thought of this until now. If Borders hadn’t lost the game, I probably wouldn’t have ever met Dale. That's nice icing on the cake for having lost my favorite book store.
 :::
 
 I am an ace when it comes to helping a team overcome their obstacles to shipping every day. Could I do this to reduce my own suffering? Something I’ve said to many groups of folks is that speed is the absence of things that are slow. Or, put another way…
