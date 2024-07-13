@@ -36,6 +36,7 @@ exports[`with filtering 1`] = `
   "/Users/acowan/projects/writing/2024/02/trypandocandgatsby/content/post/2022-12-10-cdk-ec2-encrypted-root-disk-dev.md",
   "/Users/acowan/projects/writing/2024/02/trypandocandgatsby/content/post/2023-07-14-secure-ssh-access-to-your-ec2-instances.md",
   "/Users/acowan/projects/writing/2024/02/trypandocandgatsby/content/post/2024-03-04-projen-pdk-nx.md",
+  "/Users/acowan/projects/writing/2024/02/trypandocandgatsby/content/post/2024-05-12-the-reasons-i-dont-write.md",
 ]
 `;
 
@@ -98,6 +99,7 @@ exports[`without filtering 1`] = `
   "/Users/acowan/projects/writing/2024/02/trypandocandgatsby/content/img/show-pods/synchronous-call.jpg",
   "/Users/acowan/projects/writing/2024/02/trypandocandgatsby/content/img/small-iterations/image-20211116155806067.png",
   "/Users/acowan/projects/writing/2024/02/trypandocandgatsby/content/img/small-iterations/image-20211124165227230.png",
+  "/Users/acowan/projects/writing/2024/02/trypandocandgatsby/content/img/the-reasons-i-dont-write/cover.webp",
   "/Users/acowan/projects/writing/2024/02/trypandocandgatsby/content/page/about.md",
   "/Users/acowan/projects/writing/2024/02/trypandocandgatsby/content/post/.DS_Store",
   "/Users/acowan/projects/writing/2024/02/trypandocandgatsby/content/post/2021-08-27-show-deployments.md",
@@ -117,6 +119,7 @@ exports[`without filtering 1`] = `
   "/Users/acowan/projects/writing/2024/02/trypandocandgatsby/content/post/2022-12-10-cdk-ec2-encrypted-root-disk-dev.md",
   "/Users/acowan/projects/writing/2024/02/trypandocandgatsby/content/post/2023-07-14-secure-ssh-access-to-your-ec2-instances.md",
   "/Users/acowan/projects/writing/2024/02/trypandocandgatsby/content/post/2024-03-04-projen-pdk-nx.md",
+  "/Users/acowan/projects/writing/2024/02/trypandocandgatsby/content/post/2024-05-12-the-reasons-i-dont-write.md",
   "/Users/acowan/projects/writing/2024/02/trypandocandgatsby/content/post/image-20211114130001416.png",
   "/Users/acowan/projects/writing/2024/02/trypandocandgatsby/content/post/image-20211114133040063.png",
 ]
