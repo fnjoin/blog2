@@ -56,10 +56,10 @@ export class BlogRepository {
             }
 
             if (!post.coverImage) {
-                post.coverImage = {
-                    imageSrc: "/assets/astronaut.jpg",
-                    caption: "Placeholder image of an astronaut.",
-                };
+                // post.coverImage = {
+                //     imageSrc: "/assets/astronaut.jpg",
+                //     caption: "Placeholder image of an astronaut.",
+                // };
             }
 
             post.slug = x.value.replace(this.dir + "/", "").replace(".md", "");

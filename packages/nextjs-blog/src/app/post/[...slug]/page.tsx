@@ -15,7 +15,7 @@ import { BlogRepository } from "@/lib/repository";
 
 export default async function Post({ params }: Params) {
     const repository = BlogRepository.fromCwd();
-    const post = repository.getPostByPath(params.slug.join("/"));
+    const post = repository.getPostByPath(["post", ...params.slug].join("/"));
 
     if (!post) {
         return notFound();
@@ -50,7 +50,7 @@ type Params = {
 
 export function generateMetadata({ params }: Params): Metadata {
     const repository = BlogRepository.fromCwd();
-    const post = repository.getPostByPath(params.slug.join("/"));
+    const post = repository.getPostByPath(["post", ...params.slug].join("/"));
 
     if (!post) {
         return notFound();
@@ -81,6 +81,6 @@ export async function generateStaticParams() {
     const repository = BlogRepository.fromCwd();
     const posts = repository.getAllPosts();
     return posts.map((post) => ({
-        slug: post.slug.split("/"),
+        slug: post.slug.split("/").slice(1),
     }));
 }
