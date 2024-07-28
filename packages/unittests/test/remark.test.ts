@@ -35,7 +35,7 @@ Inside of a container
 
 `);
 
-    expect(file).toMatchSnapshot();
+    expect(file.data).toMatchSnapshot();
 });
 
 test("this is the example from remark-directive", async () => {
@@ -67,7 +67,7 @@ A little more
         .use(rehypeStringify)
         .process(doc);
 
-    expect(file).toMatchSnapshot();
+    expect(file.data).toMatchSnapshot();
 });
 
 // This plugin is an example to let users write HTML with directives.

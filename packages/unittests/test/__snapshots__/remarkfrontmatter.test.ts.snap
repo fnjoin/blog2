@@ -1,19 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`how to make frontmatter work 1`] = `
-VFile {
-  "cwd": "/Users/acowan/projects/writing/2024/02/trypandocandgatsby/packages/unittests",
-  "data": {
-    "matter": {
-      "field": "value",
-    },
+{
+  "matter": {
+    "field": "value",
   },
-  "history": [
-    "test/remarkfrontmatter.test.md",
-  ],
-  "messages": [],
-  "value": "<h1>this is something</h1>
-<p>following something</p>
-<identifier key="value" dtype="containerDirective" sections="1"><p>Inside of a container</p></identifier>",
 }
 `;

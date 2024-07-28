@@ -54,5 +54,5 @@ test("how to make frontmatter work", async () => {
         .use(remarkRehype)
         .process(await read("test/remarkfrontmatter.test.md"));
 
-    expect(file).toMatchSnapshot();
+    expect(file.data).toMatchSnapshot();
 });
