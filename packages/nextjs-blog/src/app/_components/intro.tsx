@@ -1,5 +1,4 @@
 import React from "react";
-import PuzzleSVG from "./puzzlesvg";
 
 interface DefinitionProps {
     word: string;
