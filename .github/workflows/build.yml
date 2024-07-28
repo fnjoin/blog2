@@ -48,7 +48,7 @@ jobs:
             - name: Install dependencies
               run: pnpm install
             - name: Build with Next.js
-              run: npx --no-install nx run nextjs-blog:build
+              run: npx --no-install nx run-many -t build
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
               with:
