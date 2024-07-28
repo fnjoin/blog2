@@ -1,6 +1,5 @@
 import { javascript } from "projen";
 import { monorepo } from "@aws/pdk";
-import { GatsbyTypescriptAppProject } from "./blueprints/GatsbyTypescriptAppProject";
 import { NextJsBlogTypescriptAppProject } from "./blueprints/NextjsBlogStarter";
 import { TypeScriptAppProject } from "projen/lib/typescript";
 import { TypeScriptModuleResolution } from "projen/lib/javascript";
@@ -41,86 +40,6 @@ parent.package.file.addOverride("pnpm.overrides", {
     "webpack-dev-middleware@<=5.3.3": ">=5.3.4",
     "express@<4.19.2": ">=4.19.2",
     "tar@<6.2.1": ">=6.2.1",
-});
-
-new TypeScriptAppProject({
-    name: "@archieco/gatsby-remark-tufte",
-    outdir: "packages/gatsby-remark-tufte",
-    authorName: "Jeff Rafter",
-    authorEmail: "jeffrafter@gmail.com",
-    packageManager,
-    defaultReleaseBranch,
-    sampleCode: false,
-    parent,
-    ...prettier,
-    tsconfig: {
-        compilerOptions: {
-            allowJs: true,
-            target: "esnext",
-            skipLibCheck: true,
-        },
-        include: ["src/**/*.js"],
-    },
-    deps: Object.entries({
-        "html-parse-stringify": "^1.0.3",
-        "remark-parse": "^4.0.0",
-        unified: "^6.1.6",
-        retext: "^5.0.0",
-        speakingurl: "^14.0.1",
-        "unist-builder": "^1.0.2",
-        "hast-util-to-html": "^3.1.0",
-        "mdast-util-to-hast": "^2.5.0",
-        "unist-util-select": "^1.5.0",
-        "unist-util-visit": "^1.2.0",
-    }).map(([name, version]) => `${name}@${version}`),
-    devDeps: ["@types/eslint@^8"],
-});
-
-const purple = new TypeScriptAppProject({
-    name: "@archieco/gatsby-remark-purple",
-    outdir: "packages/gatsby-remark-purple",
-    packageManager,
-    defaultReleaseBranch,
-    sampleCode: false,
-    parent,
-    ...prettier,
-    tsconfig: {
-        compilerOptions: {
-            allowJs: true,
-            target: "esnext",
-            skipLibCheck: true,
-        },
-        include: ["src/**/*.js"],
-    },
-    deps: Object.entries({
-        "html-parse-stringify": "^1.0.3",
-        "remark-parse": "^4.0.0",
-        unified: "^6.1.6",
-        retext: "^5.0.0",
-        speakingurl: "^14.0.1",
-        "unist-builder": "^1.0.2",
-        "hast-util-to-html": "^3.1.0",
-        "mdast-util-to-hast": "^2.5.0",
-        "unist-util-select": "^1.5.0",
-        "unist-util-visit": "^1.2.0",
-    }).map(([name, version]) => `${name}@${version}`),
-    devDeps: ["@types/eslint@^8"],
-});
-purple.package.addField("main", "lib/index.js");
-
-new GatsbyTypescriptAppProject({
-    name: "gatsby-site",
-    outdir: "packages/gatsby-site",
-    packageManager,
-    defaultReleaseBranch,
-    parent,
-    ...prettier,
-    deps: [
-        "@archieco/gatsby-remark-purple@workspace:*",
-        "gatsby-transformer-remark",
-        "gatsby-source-filesystem",
-    ],
-    devDeps: ["@types/eslint@^8"],
 });
 
 const nextjsBlog = new NextJsBlogTypescriptAppProject({

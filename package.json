@@ -66,11 +66,8 @@
   "private": true,
   "workspaces": {
     "packages": [
-      "packages/gatsby-remark-purple",
-      "packages/gatsby-remark-tufte",
       "packages/image-server",
       "packages/static-website-image-gen",
-      "packages/gatsby-site",
       "packages/nextjs-blog",
       "packages/unittests"
     ]
