@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import React from "react";
 import Header from "../../_components/header";
+import Copyright from "@/app/_components/copy";
 import { PostBody } from "@/app/_components/post-body";
 import {
     Article,
@@ -12,7 +13,6 @@ import {
     Tags,
 } from "@/lib/markdowncomponents";
 import { BlogRepository } from "@/lib/repository";
-import Copyright from "@/app/_components/copy";
 
 export default async function Post({ params }: Params) {
     const repository = BlogRepository.fromCwd();

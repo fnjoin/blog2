@@ -103,6 +103,9 @@ export class NextJsBlogTypescriptAppProject extends TypeScriptAppProject {
                 {
                     exec: "static-website-image-gen --html-dir ./out --origin-dir ./public --target-dir ./out",
                 },
+                {
+                    exec: "static-website-image-gen --html-dir ./out --origin-dir ../../content --target-dir ./out",
+                },
             ],
         });
         this.addTask("build", {

@@ -73,7 +73,7 @@ async function processImageSource(
     const outputPath = path.join(outputDirectory, source);
 
     // Find the original file with extension jpg, png, etc.
-    const originalFile = glob.sync(`${originPath}.{jpg,jpeg,png}`)[0];
+    const originalFile = glob.sync(`${originPath}.{jpg,jpeg,png,webp}`)[0];
     if (!originalFile) {
         console.warn(`Original file not found for ${source}`);
         return;
