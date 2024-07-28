@@ -2,7 +2,7 @@ import React from "react";
 
 interface CopyrightProps {
     author: string;
-    startDate: string;
+    startDate: Date;
 }
 
 const Copyright: React.FC<CopyrightProps> = ({ author, startDate }) => {

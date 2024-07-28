@@ -5,7 +5,7 @@ export interface PostWithAuthorHandles {
     tags: string[];
     excerpt?: string;
     content: string;
-    date: string;
+    date: Date;
     coverImage?: {
         imageSrc: string;
         caption: string;
