@@ -22,6 +22,7 @@ export function HeroPost({
     author,
     slug,
 }: Props) {
+    console.log("slug", slug);
     return (
         <section>
             <div className="mb-8 md:mb-16">

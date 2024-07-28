@@ -5,7 +5,7 @@ date: 2024-05-12
 coverImage:
     imageSrc: /img/the-reasons-i-dont-write/cover.webp
     caption: two super saiyans whos energy is projected toward each other with a shallow depth of field, intense faces
-tags: ["writing", "tufte"]
+tags: ["writing", "procrastination"]
 ---
 
 I always need something I don’t have to write. Sometimes it’s time, sometimes it’s a tool I don’t have yet. If only I could write for the web and have margin notes, I think to myself, then I can begin writing seriously. Because, how can I write without margin notes? I need to be able to express my parenthetical tangents in the way that I intended. Also, I guess I need to be able to caption images. And, I need to be able to caption other things too like code samples. Boy would it be great if I could automatically number those captions, margin notes, and footnotes too. Yes, when I can do these things, then I’ll be ready to write for the web.

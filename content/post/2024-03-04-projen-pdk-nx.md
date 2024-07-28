@@ -5,7 +5,7 @@ subtitle: Creating and using blueprints with Projen, PDK, and Nx.
 date: 2024-03-03
 coverImage:
     imageSrc: /img/pdk-projen-nx/head-img.png
-    caption: this is the cover image in a longer description so that I can see the effect of more words in this position.
+    caption: An image of a hacker in front of many screens. The part of the movie where they solve an impossibly difficult problem in just a few seconds.
 tags: ["aws", "cdk", "vscode", "nx", "projen", "pdk"]
 ---
 

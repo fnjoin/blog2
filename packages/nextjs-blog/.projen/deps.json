@@ -142,8 +142,16 @@
       "type": "runtime"
     },
     {
+      "name": "@types/d3-shape",
+      "type": "runtime"
+    },
+    {
       "name": "classnames",
       "version": "^2.5.1",
+      "type": "runtime"
+    },
+    {
+      "name": "d3-shape",
       "type": "runtime"
     },
     {

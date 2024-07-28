@@ -23,11 +23,7 @@ const CoverImage: React.FC<Props> = ({ title, src, slug }) => {
     return (
         <div className="sm:mx-0">
             {slug ? (
-                <Link
-                    as={`/posts/${slug}`}
-                    href="/posts/[slug]"
-                    aria-label={title}
-                >
+                <Link as={`/${slug}`} href="/[slug]" aria-label={title}>
                     {image}
                 </Link>
             ) : (

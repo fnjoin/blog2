@@ -12,6 +12,7 @@ import {
     Tags,
 } from "@/lib/markdowncomponents";
 import { BlogRepository } from "@/lib/repository";
+import Copyright from "@/app/_components/copy";
 
 export default async function Post({ params }: Params) {
     const repository = BlogRepository.fromCwd();
@@ -37,6 +38,11 @@ export default async function Post({ params }: Params) {
                     </FigureFence>
                 )}
                 <PostBody content={post} />
+
+                <Copyright
+                    author={post.author_detail.name ?? "Author"}
+                    startDate={post.date}
+                />
             </Article>
         </main>
     );
@@ -57,12 +63,22 @@ export function generateMetadata({ params }: Params): Metadata {
     }
 
     const title = `${post.title} | Join Function`;
+
+    // if this is empty, no description is included
     const description = post.excerpt;
 
     return {
         metadataBase: new URL("https://www.fnjoin.com"),
         title,
-        description,
+        description, // note, if this is empty, no description is included
+        alternates: {
+            canonical: `https://fnjoin.com/${post.slug}`,
+        },
+
+        robots: {
+            follow: true,
+            index: true,
+        },
         openGraph: {
             title,
             description,

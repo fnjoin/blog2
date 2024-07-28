@@ -154,6 +154,8 @@ const nextjsBlog = new NextJsBlogTypescriptAppProject({
         "image-size",
         "mdast-util-toc",
         "remark-gfm@latest",
+        "d3-shape",
+        "@types/d3-shape",
     ],
     devDeps: [
         "critters",

@@ -1,4 +1,31 @@
 import React from "react";
+import PuzzleSVG from "./puzzlesvg";
+
+interface DefinitionProps {
+    word: string;
+    wordType: string;
+    definitions: string[];
+}
+
+const Definition: React.FC<DefinitionProps> = ({
+    word,
+    wordType,
+    definitions,
+}) => {
+    return (
+        <div className="bg-white shadow-md rounded-lg p-6">
+            <h2 className="text-2xl font-bold mb-2">{word}</h2>
+            <p className="text-gray-600 mb-4">{wordType}</p>
+            <ol className="list-decimal list-inside">
+                {definitions.map((definition, index) => (
+                    <li key={index} className="mb-2">
+                        {definition}
+                    </li>
+                ))}
+            </ol>
+        </div>
+    );
+};
 
 export function Intro() {
     return (
@@ -6,29 +33,13 @@ export function Intro() {
             <h1 className="text-5xl md:text-8xl font-bold tracking-tighter leading-tight md:pr-8">
                 Join Function
             </h1>
-            <h4 className="text-center md:text-left text-lg mt-5 md:pl-8">
-                <ul>
-                    <li>
-                        Returns a string created by joining a number of
-                        substrings contained in an array.
-                    </li>
-                    <li>
-                        Concatenates the elements of one or more one-dimensional
-                        arrays using a specified delimiter.
-                    </li>
-                    <li>
-                        creates and returns a new string by concatenating all of
-                        the elements in this array join() is an inbuilt string
-                        function in Python used to join elements of the sequence
-                        separated by a string separator
-                    </li>
-                    <li>
-                        Returns a new sequence of ideas as the concatentation of
-                        a sequence of ideas separated by more ideas.
-                    </li>
-                    <li>fn::join</li>
-                </ul>
-            </h4>
+            <Definition
+                word="fn::join"
+                wordType="noun"
+                definitions={[
+                    "Takes a sequence of ideas and combines them, joined by a separator.",
+                ]}
+            />
         </section>
     );
 }
