@@ -45,6 +45,13 @@ jobs:
                   # If source files changed but packages didn't, rebuild from a prior cache.
                   restore-keys: |
                       ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml', '**/package-lock.json', '**/yarn.lock') }}-
+            - name: Workaround for pnpm installl
+              run: |
+                  mkdir -p packages/static-website-image-gen/lib
+                  touch packages/static-website-image-gen/lib/cli.js
+                  mkdir -p packages/image-server/lib
+                  touch packages/image-server/lib/index.js
+
             - name: Install dependencies
               run: pnpm install
             - name: Build with Next.js
