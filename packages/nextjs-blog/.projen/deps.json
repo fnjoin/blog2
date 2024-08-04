@@ -137,6 +137,10 @@
       "type": "build"
     },
     {
+      "name": "@next/third-parties",
+      "type": "runtime"
+    },
+    {
       "name": "@tailwindcss/typography",
       "version": "latest",
       "type": "runtime"
@@ -287,6 +291,10 @@
       "type": "runtime"
     },
     {
+      "name": "strip-markdown",
+      "type": "runtime"
+    },
+    {
       "name": "to-vfile",
       "type": "runtime"
     },
@@ -302,6 +310,10 @@
     },
     {
       "name": "vfile-matter",
+      "type": "runtime"
+    },
+    {
+      "name": "xml-js",
       "type": "runtime"
     }
   ],

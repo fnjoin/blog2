@@ -75,6 +75,9 @@ const nextjsBlog = new NextJsBlogTypescriptAppProject({
         "remark-gfm@latest",
         "d3-shape",
         "@types/d3-shape",
+        "xml-js",
+        "strip-markdown",
+        "@next/third-parties", // google analytics
     ],
     devDeps: [
         "critters",

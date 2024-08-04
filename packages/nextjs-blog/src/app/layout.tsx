@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import React from "react";
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
         title,
         description,
     },
+
     twitter: {
         card: "summary_large_image",
         creator: "@archiecowan",
@@ -67,9 +69,11 @@ export default function RootLayout({
                 <meta name="theme-color" content="#000" />
                 <link
                     rel="alternate"
+                    href="https://fnjoin.com/index.xml"
                     type="application/rss+xml"
-                    href="/feed.xml"
+                    title="fn:join"
                 />
+                <GoogleAnalytics gaId="G-ZPSKLMVM2V" />
             </head>
             <body className={inter.className}>
                 <div className="min-h-screen">{children}</div>
