@@ -101,7 +101,7 @@ export function Author(props: AuthorProps) {
     const size = imageSize(
         path.join(projectRoot, "../../content", props.picture),
     );
-    console.log("markdown styles", markdownStyles);
+    // console.log("markdown styles", markdownStyles);
     return (
         <div className={markdownStyles.author}>
             <Image
