@@ -8,5 +8,5 @@ export default function ImageLoader({ src, width, quality }: any) {
     const dirname = path.dirname(src);
     const outsrc =
         dirname + "/" + basename + "w" + width + "q" + quality + ".webp";
-    return `${basePath}/${outsrc}`;
+    return `${basePath}${outsrc}`;
 }

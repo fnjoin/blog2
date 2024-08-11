@@ -11,20 +11,21 @@ async function processHtmlFiles(
     htmlDirectory: string,
     originDirectory: string,
     outputDirectory: string,
+    websiteBasePath?: string,
 ) {
     // Find all HTML files in the given directory
     const htmlFiles = await glob.glob(`${htmlDirectory}/**/*.html`);
 
     // Process each HTML file
     for (const file of htmlFiles) {
-        // console.log("found file", file);
+        console.log("found file", file);
         const htmlContent = fs.readFileSync(file, "utf-8");
         const dom = new JSDOM(htmlContent);
         const images = dom.window.document.querySelectorAll("img");
 
         // Process each img tag
         for (const img of images) {
-            // console.log("found img", img);
+            console.log("found img", img);
             const src = img.getAttribute("src");
             const srcset = img.getAttribute("srcset");
 
@@ -44,6 +45,7 @@ async function processHtmlFiles(
                     source,
                     originDirectory,
                     outputDirectory,
+                    websiteBasePath,
                 );
             }
         }
@@ -55,8 +57,9 @@ async function processImageSource(
     source: string,
     originDirectory: string,
     outputDirectory: string,
+    websiteBasePath?: string,
 ) {
-    // console.log("processing image source", source);
+    console.log("processing image source", source);
     const { dir, name } = path.parse(source);
     const match = name.match(/(.*?)\.w(\d+)q(\d+)$/);
     if (!match) {
@@ -67,18 +70,38 @@ async function processImageSource(
 
     // get ext from source
     const format = path.extname(source).slice(1);
-    // console.log("format", format);
+    console.log("format", format);
     const [, baseName, width, quality] = match;
-    const originPath = path.join(originDirectory, dir, baseName);
-    const outputPath = path.join(outputDirectory, source);
+    const originPath = path.join(
+        originDirectory,
+        websiteBasePath && websiteBasePath.startsWith("/")
+            ? dir.replace(websiteBasePath, "")
+            : dir,
+        baseName,
+    );
+    const outputPath = path.join(
+        outputDirectory,
+        websiteBasePath && websiteBasePath.startsWith("/")
+            ? source.replace(websiteBasePath, "")
+            : source,
+    );
 
     // Find the original file with extension jpg, png, etc.
     const originalFile = glob.sync(`${originPath}.{jpg,jpeg,png,webp}`)[0];
     if (!originalFile) {
-        console.warn(`Original file not found for ${source}`);
+        console.warn(
+            "Broken image!",
+            `original file not found for ${source} at ${originPath}.{jpg,jpeg,png,webp}`,
+            "origin dir",
+            originDirectory,
+            "baseName",
+            baseName,
+            "dir",
+            dir,
+        );
         return;
     }
-    // console.log("origin file found", originalFile);
+    console.log("origin file found", originalFile);
 
     // return if the output file exists already
     if (fs.existsSync(outputPath)) {
@@ -115,6 +138,10 @@ export default async function main(): Promise<void> {
             description: "Target directory for images",
             demandOption: true,
         })
+        .option("website-base-path", {
+            type: "string",
+            description: "If your website is not on /, add your basePath here",
+        })
         .option("quality", {
             type: "number",
             description: "Quality of webp images",
@@ -126,7 +153,12 @@ export default async function main(): Promise<void> {
             default: 800,
         }).argv;
 
-    processHtmlFiles(argv.htmlDir, argv.originDir, argv.targetDir)
+    processHtmlFiles(
+        argv.htmlDir,
+        argv.originDir,
+        argv.targetDir,
+        argv.websiteBasePath,
+    )
         .then(() => console.log("Image processing completed."))
         .catch((err) => console.error(err));
 }
